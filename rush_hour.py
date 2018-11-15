@@ -4,13 +4,13 @@ from field import Field
 class Rush_hour():
     def __init__(self):
         self.current_solution = []
-        self.won = False
         self.fields = self.load_startfield("startfield.txt")
 
     def load_startfield(self, filename):
         # open startfield file and put lines in list
         with open(filename, "r") as f:
             field_data = f.readlines()
+            field_size = len(field_data)
             for i, line in enumerate(field_data):
                 field_data[i] = line.strip().split()
             new_field = []
@@ -18,19 +18,25 @@ class Rush_hour():
                 new_field_row = []
                 for cell in row:
                     if cell == "E":
-                        new_field_row.append(Cell(id = "E", direction = "", vehicle_size = 0))
+                        new_field_row.append(Cell("E", "", 0))
                     else:
                         id = cell[0]
                         direction = cell[1]
                         vehicle_size = cell[2]
-                        new_field_row.append(Cell(id = id, direction = direction, vehicle_size = vehicle_size))
+                        new_field_row.append(Cell(id, direction, vehicle_size))
                 new_field.append(new_field_row)
-        return [Field(new_field)]
+        return [Field(field_size, new_field)]
 
     def play(self):
         for field in self.fields:
-            field.next_step()
-                
+            if not field.won():
+                new_fields = field.next_step()
+                for field in new_fields:
+                    self.fields.append(field)
+                if len(self.fields) == 764:
+
+
+
 
 
 
