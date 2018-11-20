@@ -32,8 +32,10 @@ class Rush_hour():
             if not field.won():
                 new_fields = field.next_step()
                 for field in new_fields:
-                    self.fields.append(field)
-                if len(self.fields) == 764:
+                    print(field)
+
+                    #self.fields.append(field)
+                #if len(self.fields) == 764:
 
 
 
