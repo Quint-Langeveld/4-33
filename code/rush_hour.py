@@ -41,6 +41,8 @@ class Rush_hour():
                 for field in new_fields:
                     #print(field)
                     self.fields.append(field)
+                self.fields.remove(field)
+                #self.fields = new_fields
 
 
 # start game

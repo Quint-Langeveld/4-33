@@ -1,6 +1,6 @@
 from cell import Cell
 import copy
-from breadth_first import breadth_first
+# from breadth_first import breadth_first
 
 class Field(object):
     def __init__(self, size, new_field):
