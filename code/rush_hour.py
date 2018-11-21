@@ -3,9 +3,9 @@ from field import Field
 import sys
 
 class Rush_hour():
-    def __init__(self):
+    def __init__(self, startfield):
         self.current_solution = []
-        self.fields = self.load_startfield("startfield.txt")
+        self.fields = self.load_startfield(startfield)
 
     def load_startfield(self, filename):
         # open startfield file and put lines in list
@@ -39,60 +39,16 @@ class Rush_hour():
             else:
                 new_fields = field.next_step()
                 for field in new_fields:
+                    #print(field)
                     self.fields.append(field)
-
-
-
-                    #self.fields.append(field)
-                #if len(self.fields) == 764:
-
-
-
-
-
-
-
-
-
-
-    #
-    #
-    # def play(self):
-    #
-    #
-    #
-    #     self.vehicles = self.load_vehicles("vehicles.txt")
-    #
-    # def load_vehicles(self, filename):
-    #     # open item file and put lines in list
-    #     with open(filename, "r") as f:
-    #         vehicles_data = f.readlines()
-    #         for i, line in enumerate(vehicles_data):
-    #             vehicles_data[i] = line.strip()
-    #         # find items in list and assign information to Item variables
-    #         vehicles = []
-    #         for i in range(0, len(vehicles_data), 9):
-    #             type = vehicles_data[i]
-    #             size = vehicles_data[i + 1]
-    #             x = vehicles_data[i + 2]
-    #             y = vehicles_data[i + 3]
-    #             movable = bool(vehicles_data[i + 4])
-    #             unchangable = vehicles_data[i + 5]
-    #             free_spaces_lower_coordinate = vehicles_data[i + 6]
-    #             free_spaces_higher_coordinate = vehicles_data[i + 7]
-    #             # create new Item object and put in item library and
-    #             # inventory of room
-    #             vehicle = Vehicle(type, size, x, y, movable, unchangable,
-    #                               free_spaces_lower_coordinate,
-    #                               free_spaces_higher_coordinate)
-    #             vehicles.append(vehicle)
-    #             print(vehicle)
-    #     print(vehicles)
-    #     return(vehicles)
-
 
 
 # start game
 if __name__ == "__main__":
-    rush_hour = Rush_hour()
+    if len(sys.argv) != 3:
+        print("Usage: python rush_hour.py startfield algorithm")
+        sys.exit(1)
+    startfield = sys.argv[1]
+    algorithm = sys.argv[2]
+    rush_hour = Rush_hour(startfield)
     rush_hour.play()
