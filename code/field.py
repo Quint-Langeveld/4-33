@@ -26,89 +26,97 @@ class Field(object):
                     if cell.direction == "H":
                         if cell.vehicle_size == 2:
                             for k in range(1, (self.size - 1)):
-                                if j - k >= 0 and row[j - k].id == "E" and row[j - k + 1].id == "E":
-                                    new_field = copy.deepcopy(self.field)
-                                    new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    for l in range(2, (self.size - 1)):
-                                        index_to_check = j - k + l
-                                        if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
-                                            new_field[i][index_to_check] = Cell("E", "", 0)
-                                    new_fields.append(Field(self.size, new_field))
-                                if j + k <= (self.size - 1) and row[j + k].id == "E" and row[j + k - 1].id == "E":
-                                    new_field = copy.deepcopy(self.field)
-                                    new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    for l in range(2, (self.size - 1)):
-                                        index_to_check = j + k - l
-                                        if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
-                                            new_field[i][index_to_check] = Cell("E", "", 0)
-                                    new_fields.append(Field(self.size, new_field))
+                                if j - k >= 0 and row[j - k].id == "E":
+                                    if row[j - k + 1].id == "E" or row[j - k + 1].id == cell.id:
+                                        new_field = copy.deepcopy(self.field)
+                                        new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        for l in range(2, (self.size - 1)):
+                                            index_to_check = j - k + l
+                                            if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
+                                                new_field[i][index_to_check] = Cell("E", "", 0)
+                                        new_fields.append(Field(self.size, new_field))
+                                if j + k <= (self.size - 1) and row[j + k].id == "E":
+                                    if row[j + k - 1].id == "E" or row[j + k -1].id == cell.id:
+                                        new_field = copy.deepcopy(self.field)
+                                        new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        for l in range(2, (self.size - 1)):
+                                            index_to_check = j + k - l
+                                            if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
+                                                new_field[i][index_to_check] = Cell("E", "", 0)
+                                        new_fields.append(Field(self.size, new_field))
                         else: # if cell.vehicle_size == 3
                             for k in range (1, (self.size - 1)):
-                                if j - k >= 0 and row[j - k].id == "E" and row[j - k + 1].id == "E" row[j - k + 2].id == "E":
-                                    new_field = copy.deepcopy(self.field)
-                                    new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i][j - k + 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    for l in range(3, (self.size - 1)):
-                                        index_to_check = j - k + l
-                                        if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
-                                            new_field[i][index_to_check] = Cell("E", "", 0)
-                                    new_fields.append(Field(self.size, new_field))
-                                if j + k <= (self.size - 1) and row[j + k].id == "E" and row[j + k - 1].id == "E" and row[j + k - 2].id == "E":
-                                    new_field = copy.deepcopy(self.field)
-                                    new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i][j + k - 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    for l in range(3, (self.size - 1)):
-                                        index_to_check = j + k - l
-                                        if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
-                                            new_field[i][index_to_check] = Cell("E", "", 0)
-                                    new_fields.append(Field(self.size, new_field))
+                                if j - k >= 0 and row[j - k].id == "E":
+                                    if (row[j - k + 1].id == "E" or row[j - k + 1].id == cell.id) and (row[j - k + 2].id == "E" or row[j - k + 2].id == cell.id):
+                                        new_field = copy.deepcopy(self.field)
+                                        new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i][j - k + 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        for l in range(3, (self.size - 1)):
+                                            index_to_check = j - k + l
+                                            if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
+                                                new_field[i][index_to_check] = Cell("E", "", 0)
+                                        new_fields.append(Field(self.size, new_field))
+                                if j + k <= (self.size - 1) and row[j + k].id == "E":
+                                    if (row[j + k - 1].id == "E" or row[j + k - 1].id == cell.id) and (row[j + k - 2].id == "E" or row[j + k - 2].id == cell.id):
+                                        new_field = copy.deepcopy(self.field)
+                                        new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i][j + k - 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        for l in range(3, (self.size - 1)):
+                                            index_to_check = j + k - l
+                                            if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
+                                                new_field[i][index_to_check] = Cell("E", "", 0)
+                                        new_fields.append(Field(self.size, new_field))
                     else: # if cell.direction == vertical
                         if cell.vehicle_size == 2:
                             for k in range(1, (self.size - 1)):
-                                if i - k >= 0 and self.field[i - k][j].id == "E" and self.field[i - k + 1][j].id == "E":
-                                    new_field = copy.deepcopy(self.field)
-                                    new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    for l in range(2, (self.size - 1)):
-                                        index_to_check = i - k + l
-                                        if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
-                                            new_field[index_to_check][j] = Cell("E", "", 0)
-                                    new_fields.append(Field(self.size, new_field))
-                                if i + k <= (self.size - 1) and self.field[i + k][j].id == "E" self.field[i + k - 1][j].id == "E":
-                                    new_field = copy.deepcopy(self.field)
-                                    new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    for l in range(2, (self.size - 1)):
-                                        index_to_check = i + k - l
-                                        if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
-                                            new_field[index_to_check][j] = Cell("E", "", 0)
-                                    new_fields.append(Field(self.size, new_field))
+                                if i - k >= 0 and self.field[i - k][j].id == "E":
+                                    if self.field[i - k + 1][j].id == "E" or self.field[i - k + 1][j].id == cell.id:
+                                        new_field = copy.deepcopy(self.field)
+                                        new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        for l in range(2, (self.size - 1)):
+                                            index_to_check = i - k + l
+                                            if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
+                                                new_field[index_to_check][j] = Cell("E", "", 0)
+                                        new_fields.append(Field(self.size, new_field))
+                                if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
+                                    if self.field[i + k - 1][j].id == "E" or self.field[i + k - 1][j].id == cell.id:
+                                        new_field = copy.deepcopy(self.field)
+                                        new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        for l in range(2, (self.size - 1)):
+                                            index_to_check = i + k - l
+                                            if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
+                                                new_field[index_to_check][j] = Cell("E", "", 0)
+                                        new_fields.append(Field(self.size, new_field))
                         else: # if cell.vehicle_size == 3
                             for k in range(1, (self.size - 1)):
-                                if i - k >= 0 and self.field[i - k][j].id == "E" and self.field[i - k + 1][j].id == "E" and self.field[i - k + 2][j].id == "E":
-                                    new_field = copy.deepcopy(self.field)
-                                    new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i - k + 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    for l in range(3, (self.size - 1)):
-                                        index_to_check = i - k + l
-                                        if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
-                                            new_field[index_to_check][j] = Cell("E", "", 0)
-                                    new_fields.append(Field(self.size, new_field))
-                                if i + k <= (self.size - 1) and self.field[i + k][j].id == "E" and self.field[i + k - 1][j].id == "E" and self.field[i + k - 2][j].id == "E":
-                                    new_field = copy.deepcopy(self.field)
-                                    new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    new_field[i + k - 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                    for l in range(3, (self.size - 1)):
-                                        index_to_check = i + k - l
-                                        if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
-                                            new_field[index_to_check][j] = Cell("E", "", 0)
-                                    new_fields.append(Field(self.size, new_field))
+                                if i - k >= 0 and self.field[i - k][j].id == "E":
+                                    if (self.field[i - k + 1][j].id == "E" or self.field[i - k + 1][j].id == cell.id) and (self.field[i - k + 2][j].id == "E" or self.field[i - k + 2][j].id == cell.id):
+                                        new_field = copy.deepcopy(self.field)
+                                        new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i - k + 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        for l in range(3, (self.size - 1)):
+                                            index_to_check = i - k + l
+                                            if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
+                                                new_field[index_to_check][j] = Cell("E", "", 0)
+                                        new_fields.append(Field(self.size, new_field))
+                                if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
+                                    if (self.field[i + k - 1][j].id == "E" or self.field[i + k - 1][j].id == cell.id) and (self.field[i + k - 2][j].id == "E" or self.field[i + k - 2][j].id == cell.id):
+                                        new_field = copy.deepcopy(self.field)
+                                        new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        new_field[i + k - 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                                        for l in range(3, (self.size - 1)):
+                                            index_to_check = i + k - l
+                                            if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
+                                                new_field[index_to_check][j] = Cell("E", "", 0)
+                                        new_fields.append(Field(self.size, new_field))
 
 
 
