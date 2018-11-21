@@ -6,6 +6,7 @@ class Field(object):
         self.exit_row_index = (size - 1) // 2
         self.size = size
         self.field = new_field
+        self.parent_fields = []
 
     def __str__(self):
         s = ""
@@ -35,7 +36,10 @@ class Field(object):
                                             index_to_check = j - k + l
                                             if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_fields.append(Field(self.size, new_field))
+                                        new_field_object = Field(self.size, new_field)
+                                        new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
+                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_fields.append(new_field_object)
                                 if j + k <= (self.size - 1) and row[j + k].id == "E":
                                     if row[j + k - 1].id == "E" or row[j + k -1].id == cell.id:
                                         new_field = copy.deepcopy(self.field)
@@ -45,7 +49,10 @@ class Field(object):
                                             index_to_check = j + k - l
                                             if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_fields.append(Field(self.size, new_field))
+                                        new_field_object = Field(self.size, new_field)
+                                        new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
+                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_fields.append(new_field_object)
                         else: # if cell.vehicle_size == 3
                             for k in range (1, (self.size - 1)):
                                 if j - k >= 0 and row[j - k].id == "E":
@@ -58,7 +65,10 @@ class Field(object):
                                             index_to_check = j - k + l
                                             if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_fields.append(Field(self.size, new_field))
+                                        new_field_object = Field(self.size, new_field)
+                                        new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
+                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_fields.append(new_field_object)
                                 if j + k <= (self.size - 1) and row[j + k].id == "E":
                                     if (row[j + k - 1].id == "E" or row[j + k - 1].id == cell.id) and (row[j + k - 2].id == "E" or row[j + k - 2].id == cell.id):
                                         new_field = copy.deepcopy(self.field)
@@ -69,7 +79,10 @@ class Field(object):
                                             index_to_check = j + k - l
                                             if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_fields.append(Field(self.size, new_field))
+                                        new_field_object = Field(self.size, new_field)
+                                        new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
+                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_fields.append(new_field_object)
                     else: # if cell.direction == vertical
                         if cell.vehicle_size == 2:
                             for k in range(1, (self.size - 1)):
@@ -82,7 +95,10 @@ class Field(object):
                                             index_to_check = i - k + l
                                             if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_fields.append(Field(self.size, new_field))
+                                        new_field_object = Field(self.size, new_field)
+                                        new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
+                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
                                     if self.field[i + k - 1][j].id == "E" or self.field[i + k - 1][j].id == cell.id:
                                         new_field = copy.deepcopy(self.field)
@@ -92,7 +108,10 @@ class Field(object):
                                             index_to_check = i + k - l
                                             if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_fields.append(Field(self.size, new_field))
+                                        new_field_object = Field(self.size, new_field)
+                                        new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
+                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_fields.append(new_field_object)
                         else: # if cell.vehicle_size == 3
                             for k in range(1, (self.size - 1)):
                                 if i - k >= 0 and self.field[i - k][j].id == "E":
@@ -105,7 +124,10 @@ class Field(object):
                                             index_to_check = i - k + l
                                             if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_fields.append(Field(self.size, new_field))
+                                        new_field_object = Field(self.size, new_field)
+                                        new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
+                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
                                     if (self.field[i + k - 1][j].id == "E" or self.field[i + k - 1][j].id == cell.id) and (self.field[i + k - 2][j].id == "E" or self.field[i + k - 2][j].id == cell.id):
                                         new_field = copy.deepcopy(self.field)
@@ -116,11 +138,10 @@ class Field(object):
                                             index_to_check = i + k - l
                                             if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_fields.append(Field(self.size, new_field))
-
-
-
-
+                                        new_field_object = Field(self.size, new_field)
+                                        new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
+                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_fields.append(new_field_object)
         return new_fields
 
     def won(self):
@@ -137,3 +158,11 @@ class Field(object):
             return False
         else:
             return True
+
+    def custom_hash(self):
+        s = ""
+        for row in self.field:
+            for cell in row:
+                s += cell.id + cell.direction + str(cell.vehicle_size) + " "
+            s += "\n"
+        return s

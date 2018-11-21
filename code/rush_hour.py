@@ -1,5 +1,6 @@
 from cell import Cell
 from field import Field
+import sys
 
 class Rush_hour():
     def __init__(self):
@@ -29,10 +30,18 @@ class Rush_hour():
 
     def play(self):
         for field in self.fields:
-            if not field.won():
+            if field.won():
+                print("steps to win: ", (len(field.parent_fields) + 1))
+                for parent_field in field.parent_fields:
+                    print(parent_field)
+                print(field)
+                break
+            else:
                 new_fields = field.next_step()
                 for field in new_fields:
-                    print(field)
+                    self.fields.append(field)
+
+
 
                     #self.fields.append(field)
                 #if len(self.fields) == 764:
