@@ -1,5 +1,6 @@
 from cell import Cell
 import copy
+from breadth_first import breadth_first
 
 class Field(object):
     def __init__(self, size, new_field):
@@ -19,6 +20,7 @@ class Field(object):
     def next_step(self):
         """Create children fields from field"""
         # create empty list that will be filled with Field objects and returned
+
         new_fields = []
         # iterate over rows in field
         for i, row in enumerate(self.field):
@@ -61,7 +63,7 @@ class Field(object):
                                         # copy parent fields from field creating child
                                         new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
                                         # add current field to parent fields new field
-                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_field_object.parent_fields.append(self.convert_to_string())
                                         # append new field object to the return list
                                         new_fields.append(new_field_object)
                                 # find possible new places for vehicle
@@ -82,7 +84,7 @@ class Field(object):
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
                                         new_field_object = Field(self.size, new_field)
                                         new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
-                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_field_object.parent_fields.append(self.convert_to_string())
                                         new_fields.append(new_field_object)
                         else: # if cell.vehicle_size == 3
                             for k in range (1, (self.size - 2)):
@@ -102,7 +104,7 @@ class Field(object):
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
                                         new_field_object = Field(self.size, new_field)
                                         new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
-                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_field_object.parent_fields.append(self.convert_to_string())
                                         new_fields.append(new_field_object)
                                 if j + k <= (self.size - 1) and row[j + k].id == "E":
                                     move_possible = True
@@ -120,7 +122,7 @@ class Field(object):
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
                                         new_field_object = Field(self.size, new_field)
                                         new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
-                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_field_object.parent_fields.append(self.convert_to_string())
                                         new_fields.append(new_field_object)
                     else: # if cell.direction == vertical
                         if cell.vehicle_size == 2:
@@ -140,7 +142,7 @@ class Field(object):
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
                                         new_field_object = Field(self.size, new_field)
                                         new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
-                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_field_object.parent_fields.append(self.convert_to_string())
                                         new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
                                     move_possible = True
@@ -157,7 +159,7 @@ class Field(object):
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
                                         new_field_object = Field(self.size, new_field)
                                         new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
-                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_field_object.parent_fields.append(self.convert_to_string())
                                         new_fields.append(new_field_object)
                         else: # if cell.vehicle_size == 3
                             for k in range(1, (self.size - 2)):
@@ -177,7 +179,7 @@ class Field(object):
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
                                         new_field_object = Field(self.size, new_field)
                                         new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
-                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_field_object.parent_fields.append(self.convert_to_string())
                                         new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
                                     move_possible = True
@@ -195,7 +197,7 @@ class Field(object):
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
                                         new_field_object = Field(self.size, new_field)
                                         new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
-                                        new_field_object.parent_fields.append(self.custom_hash())
+                                        new_field_object.parent_fields.append(self.convert_to_string())
                                         new_fields.append(new_field_object)
         return new_fields
 
@@ -214,7 +216,7 @@ class Field(object):
         else:
             return True
 
-    def custom_hash(self):
+    def convert_to_string(self):
         s = ""
         for row in self.field:
             for cell in row:
