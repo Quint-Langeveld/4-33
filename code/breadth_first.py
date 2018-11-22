@@ -20,7 +20,7 @@ def breadth_first(old_field):
                     # check size of horizontal moving vehicle
                     if cell.vehicle_size == 2:
                         # find possible new places for vehicle
-                        for k in range(1, (old_field.size - 1)):
+                        for k in range(1, (old_field.size)):
                             if j - k >= 0 and row[j - k].id == "E":
                                 # check if movement to new possible place valid rush hour move
                                 move_possible = True
@@ -50,8 +50,6 @@ def breadth_first(old_field):
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
-                                    else:
-                                        print("none")
                             # find possible new places for vehicle
                             if j + k <= (old_field.size - 1) and row[j + k].id == "E":
                                 # check if movement to new possible place valid rush hour move
@@ -71,10 +69,8 @@ def breadth_first(old_field):
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
-                                    else:
-                                        print("none")
                     else: # if cell.vehicle_size == 3
-                        for k in range (1, (old_field.size - 2)):
+                        for k in range (1, (old_field.size)):
                             if j - k >= 0 and row[j - k].id == "E":
                                 move_possible = True
                                 for l in range(k):
@@ -92,8 +88,6 @@ def breadth_first(old_field):
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
-                                    else:
-                                        print("none")
                             if j + k <= (old_field.size - 1) and row[j + k].id == "E":
                                 move_possible = True
                                 for l in range(k):
@@ -111,8 +105,6 @@ def breadth_first(old_field):
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
-                                    else:
-                                        print("none")
                 else: # if cell.direction == vertical
                     if cell.vehicle_size == 2:
                         for k in range(1, (old_field.size - 1)):
@@ -132,8 +124,6 @@ def breadth_first(old_field):
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
-                                    else:
-                                        print("none")
                             if i + k <= (old_field.size - 1) and old_field.field[i + k][j].id == "E":
                                 move_possible = True
                                 for l in range(k):
@@ -150,10 +140,8 @@ def breadth_first(old_field):
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
-                                    else:
-                                        print("none")
                     else: # if cell.vehicle_size == 3
-                        for k in range(1, (old_field.size - 2)):
+                        for k in range(1, (old_field.size)):
                             if i - k >= 0 and old_field.field[i - k][j].id == "E":
                                 move_possible = True
                                 for l in range(k):
@@ -171,8 +159,6 @@ def breadth_first(old_field):
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
-                                    else:
-                                        print("none")
                             if i + k <= (old_field.size - 1) and old_field.field[i + k][j].id == "E":
                                 move_possible = True
                                 for l in range(k):
@@ -190,8 +176,7 @@ def breadth_first(old_field):
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
-                                    else:
-                                        print("none")
+
     return new_fields
 
 def create_field(old_field_object, new_field_list):

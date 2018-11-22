@@ -41,6 +41,7 @@ class Rush_hour():
                 else:
                     new_fields = breadth_first(field)
                     for new_field in new_fields:
+                        #print(new_field)
                         self.fields.append(new_field)
         else:
             "to do"
