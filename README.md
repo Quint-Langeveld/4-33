@@ -9,3 +9,8 @@ are a list of Field objects which are used by rush_hour.py to 'decide' when the 
 
 The output of rush_hour.py is an integer that represents the amount of moves that were made to complete the inputted board.
 
+statespace: 
+upper upper bound: ((#auto's * 5) + (#trucks * 4)) ^ stappen
+lower bound: not of interest
+
+
