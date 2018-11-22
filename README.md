@@ -1,7 +1,6 @@
 # 4-33
 
-datastructure: 
-Run class rush_hour.py to start the programm. In the command line choose the algorith (for now only Breadthfirst) to run 
+To run: run rush_hour.py to start the programm. In the command line choose the algorith (for now only Breadthfirst) to run 
 the board with and the .txt file to load the board from. 
 
 rush_hour.py then uses the "cell" class to identify a car/truck on the board and uses the corresponding algorith class to move
