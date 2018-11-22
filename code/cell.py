@@ -4,3 +4,4 @@ class Cell(object):
         self.id = id
         self.direction = direction
         self.vehicle_size = int(vehicle_size)
+        
