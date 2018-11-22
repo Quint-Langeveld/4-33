@@ -41,13 +41,17 @@ def breadth_first(old_field):
                                         if index_to_check <= (old_field.size - 1) and new_field[i][index_to_check].id == cell.id:
                                             new_field[i][index_to_check] = Cell("E", "", 0)
                                     # create new field object with the new field list containing lists
-                                    new_field_object = Field(old_field.size, new_field)
+                                    # new_field_object = Field(old_field.size, new_field)
                                     # copy parent fields from field creating child
-                                    new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
+                                    #new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
                                     # add current field to parent fields new field
-                                    new_field_object.parent_fields.append(old_field.convert_to_string())
+                                    #new_field_object.parent_fields.append(old_field.convert_to_string())
                                     # append new field object to the return list
-                                    new_fields.append(new_field_object)
+                                    new_field_object = create_field(old_field, new_field)
+                                    if new_field_object != None:
+                                        new_fields.append(new_field_object)
+                                    else:
+                                        print("none")
                             # find possible new places for vehicle
                             if j + k <= (old_field.size - 1) and row[j + k].id == "E":
                                 # check if movement to new possible place valid rush hour move
@@ -64,10 +68,11 @@ def breadth_first(old_field):
                                         index_to_check = j + k - m
                                         if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
                                             new_field[i][index_to_check] = Cell("E", "", 0)
-                                    new_field_object = Field(old_field.size, new_field)
-                                    new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
-                                    new_field_object.parent_fields.append(old_field.convert_to_string())
-                                    new_fields.append(new_field_object)
+                                    new_field_object = create_field(old_field, new_field)
+                                    if new_field_object != None:
+                                        new_fields.append(new_field_object)
+                                    else:
+                                        print("none")
                     else: # if cell.vehicle_size == 3
                         for k in range (1, (old_field.size - 2)):
                             if j - k >= 0 and row[j - k].id == "E":
@@ -84,10 +89,11 @@ def breadth_first(old_field):
                                         index_to_check = j - k + m
                                         if index_to_check <= (old_field.size - 1) and new_field[i][index_to_check].id == cell.id:
                                             new_field[i][index_to_check] = Cell("E", "", 0)
-                                    new_field_object = Field(old_field.size, new_field)
-                                    new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
-                                    new_field_object.parent_fields.append(old_field.convert_to_string())
-                                    new_fields.append(new_field_object)
+                                    new_field_object = create_field(old_field, new_field)
+                                    if new_field_object != None:
+                                        new_fields.append(new_field_object)
+                                    else:
+                                        print("none")
                             if j + k <= (old_field.size - 1) and row[j + k].id == "E":
                                 move_possible = True
                                 for l in range(k):
@@ -102,10 +108,11 @@ def breadth_first(old_field):
                                         index_to_check = j + k - m
                                         if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
                                             new_field[i][index_to_check] = Cell("E", "", 0)
-                                    new_field_object = Field(old_field.size, new_field)
-                                    new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
-                                    new_field_object.parent_fields.append(old_field.convert_to_string())
-                                    new_fields.append(new_field_object)
+                                    new_field_object = create_field(old_field, new_field)
+                                    if new_field_object != None:
+                                        new_fields.append(new_field_object)
+                                    else:
+                                        print("none")
                 else: # if cell.direction == vertical
                     if cell.vehicle_size == 2:
                         for k in range(1, (old_field.size - 1)):
@@ -122,10 +129,11 @@ def breadth_first(old_field):
                                         index_to_check = i - k + m
                                         if index_to_check <= old_field.size - 1 and new_field[index_to_check][j].id == cell.id:
                                             new_field[index_to_check][j] = Cell("E", "", 0)
-                                    new_field_object = Field(old_field.size, new_field)
-                                    new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
-                                    new_field_object.parent_fields.append(old_field.convert_to_string())
-                                    new_fields.append(new_field_object)
+                                    new_field_object = create_field(old_field, new_field)
+                                    if new_field_object != None:
+                                        new_fields.append(new_field_object)
+                                    else:
+                                        print("none")
                             if i + k <= (old_field.size - 1) and old_field.field[i + k][j].id == "E":
                                 move_possible = True
                                 for l in range(k):
@@ -139,10 +147,11 @@ def breadth_first(old_field):
                                         index_to_check = i + k - m
                                         if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
                                             new_field[index_to_check][j] = Cell("E", "", 0)
-                                    new_field_object = Field(old_field.size, new_field)
-                                    new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
-                                    new_field_object.parent_fields.append(old_field.convert_to_string())
-                                    new_fields.append(new_field_object)
+                                    new_field_object = create_field(old_field, new_field)
+                                    if new_field_object != None:
+                                        new_fields.append(new_field_object)
+                                    else:
+                                        print("none")
                     else: # if cell.vehicle_size == 3
                         for k in range(1, (old_field.size - 2)):
                             if i - k >= 0 and old_field.field[i - k][j].id == "E":
@@ -159,10 +168,11 @@ def breadth_first(old_field):
                                         index_to_check = i - k + m
                                         if index_to_check <= old_field.size - 1 and new_field[index_to_check][j].id == cell.id:
                                             new_field[index_to_check][j] = Cell("E", "", 0)
-                                    new_field_object = Field(old_field.size, new_field)
-                                    new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
-                                    new_field_object.parent_fields.append(old_field.convert_to_string())
-                                    new_fields.append(new_field_object)
+                                    new_field_object = create_field(old_field, new_field)
+                                    if new_field_object != None:
+                                        new_fields.append(new_field_object)
+                                    else:
+                                        print("none")
                             if i + k <= (old_field.size - 1) and old_field.field[i + k][j].id == "E":
                                 move_possible = True
                                 for l in range(k):
@@ -177,8 +187,18 @@ def breadth_first(old_field):
                                         index_to_check = i + k - m
                                         if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
                                             new_field[index_to_check][j] = Cell("E", "", 0)
-                                    new_field_object = Field(old_field.size, new_field)
-                                    new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
-                                    new_field_object.parent_fields.append(old_field.convert_to_string())
-                                    new_fields.append(new_field_object)
+                                    new_field_object = create_field(old_field, new_field)
+                                    if new_field_object != None:
+                                        new_fields.append(new_field_object)
+                                    else:
+                                        print("none")
     return new_fields
+
+def create_field(old_field_object, new_field_list):
+    new_field_object = Field(old_field_object.size, new_field_list)
+    new_field_object.parent_fields = copy.deepcopy(old_field_object.parent_fields)
+    new_field_object.parent_fields.append(old_field_object.convert_to_string())
+    if new_field_object.convert_to_string() in new_field_object.parent_fields:
+        return None
+    else:
+        return new_field_object

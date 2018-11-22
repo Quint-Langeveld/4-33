@@ -31,7 +31,7 @@ class Rush_hour():
 
     def play(self, algorithm):
         if algorithm == "breadthfirst":
-            for field in self.fields:
+            for i, field in enumerate(self.fields):
                 if field.won():
                     print("steps to win: ", (len(field.parent_fields) + 1))
                     for parent_field in field.parent_fields:
@@ -39,13 +39,9 @@ class Rush_hour():
                     print(field)
                     break
                 else:
-                    # new_fields = field.next_step()
                     new_fields = breadth_first(field)
-                    for field in new_fields:
-                        #print(field)
-                        self.fields.append(field)
-                    self.fields.remove(field)
-                    #self.fields = new_fields
+                    for new_field in new_fields:
+                        self.fields.append(new_field)
         else:
             "to do"
 
