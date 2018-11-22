@@ -1,5 +1,6 @@
 from cell import Cell
 from field import Field
+from breadth_first import breadth_first
 import sys
 
 class Rush_hour():
@@ -28,21 +29,25 @@ class Rush_hour():
                 new_field.append(new_field_row)
         return [Field(field_size, new_field)]
 
-    def play(self):
-        for field in self.fields:
-            if field.won():
-                print("steps to win: ", (len(field.parent_fields) + 1))
-                for parent_field in field.parent_fields:
-                    print(parent_field)
-                print(field)
-                break
-            else:
-                new_fields = field.next_step()
-                for field in new_fields:
-                    #print(field)
-                    self.fields.append(field)
-                self.fields.remove(field)
-                #self.fields = new_fields
+    def play(self, algorithm):
+        if algorithm == "breadthfirst":
+            for field in self.fields:
+                if field.won():
+                    print("steps to win: ", (len(field.parent_fields) + 1))
+                    for parent_field in field.parent_fields:
+                        print(parent_field)
+                    print(field)
+                    break
+                else:
+                    # new_fields = field.next_step()
+                    new_fields = breadth_first(field)
+                    for field in new_fields:
+                        #print(field)
+                        self.fields.append(field)
+                    self.fields.remove(field)
+                    #self.fields = new_fields
+        else:
+            "to do"
 
 
 # start game
@@ -52,5 +57,8 @@ if __name__ == "__main__":
         sys.exit(1)
     startfield = sys.argv[1]
     algorithm = sys.argv[2]
+    if algorithm != "breadthfirst":
+        print("Algorithm not supported, please try again")
+        sys.exit(1)
     rush_hour = Rush_hour(startfield)
-    rush_hour.play()
+    rush_hour.play(algorithm)
