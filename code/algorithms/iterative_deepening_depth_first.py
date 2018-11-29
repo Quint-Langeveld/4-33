@@ -56,7 +56,7 @@ def itterative_deepening_depth_first(first_field, depth):
 
     return 0
 
-def make_childs(field):
+def make_childs(old_field):
 
     new_fields = []
     # iterate over rows in field
