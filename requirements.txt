@@ -1,2 +1,4 @@
-python3
-a playfield.txt file
+Below all necessary packages are provided to run the code:
+
+copy
+
