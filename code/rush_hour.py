@@ -35,7 +35,7 @@ class Rush_hour():
             breadth_first_regulator(self.fields)
 
         if algorithm == "itterative_deepening_depth_first":
-            itterative_deepening_depth_first(self.fields[0])
+            itterative_deepening_depth_first_generator(self.fields[0])
 
         else:
             "to do"
