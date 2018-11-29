@@ -1,6 +1,7 @@
 from classes.cell import Cell
 from classes.field import Field
 from algorithms.breadth_first import breadth_first_regulator
+from algorithms.itterative_deepening_depth_first import itterative_deepening_depth_first_generator
 import sys
 
 class Rush_hour():
@@ -49,7 +50,7 @@ if __name__ == "__main__":
         sys.exit(1)
     startfield = sys.argv[1]
     algorithm = sys.argv[2]
-    if algorithm != "breadthfirst":
+    if algorithm != "breadthfirst" and algorithm != "itterative_deepening_depth_first":
         print("Algorithm not supported, please try again")
         sys.exit(1)
     rush_hour = Rush_hour(startfield)
