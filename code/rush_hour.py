@@ -10,7 +10,7 @@ class Rush_hour():
 
     def load_startfield(self, filename):
         # open startfield file and put lines in list
-        filename = f"startfields/{filename}"
+        filename = f"../data/startfields/{filename}"
         with open(filename, "r") as f:
             field_data = f.readlines()
             field_size = len(field_data)
