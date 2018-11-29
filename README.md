@@ -1,16 +1,25 @@
 # 4-33
 
-To run: run rush_hour.py to start the programm. In the command line choose the algorith (for now only Breadthfirst) to run 
-the board with and the .txt file to load the board from. 
+My Project:
+Seven problems are given on a 6x6, 9x9 and 12x12 grid with a fixed setup of cars/trucks. There is one exit on the grid and we are supposed to find the best solution of the given problems. Cars and trucks, respectively a length of two and three, can only move horizontally or vertically depending on their fixed position from the start. Cars and trucks can't jump or move through other vehicles on the grid to find the best solution.
 
-rush_hour.py then uses the "cell" class to identify a car/truck on the board and uses the corresponding algorith class to move
-the vehicles. The algorith class revers to the Field class to create Field objects. The output of the algorith classes 
-are a list of Field objects which are used by rush_hour.py to 'decide' when the board is 'won'. 
+Getting Started:
+Prerequisites:
+This codebase is fully written in Python3.6.3. In requirements.txt are all necessary packages included to run the code succesfully. These are easily installed via the provided instruction below:
+  pip install -r requirements.txt
+  
+Structure:
+All Python scripts are stored in the folder Code. All input values can be found in the map Data where the map Results hold the  obtained results from the code.
 
-The output of rush_hour.py is an integer that represents the amount of moves that were made to complete the inputted board.
+Testing:
+To run the code with a standardconfiguration use the instruction below, where one of the seven problems and the used algorithm should be defined: 
+  python rushour.py <field>.text <algorithm>
 
-statespace: 
-upper upper bound: ((#auto's * 5) + (#trucks * 4)) ^ stappen
-lower bound: not of interest
+Authors:
+Melle Meewis, Quint Langeveld & Hugo Langeveld
+
+Acknowledgments:
+We like to thank StackOverflow and the 'minor programmeren van de Uva' for helping us finishing the project. 
+
 
 
