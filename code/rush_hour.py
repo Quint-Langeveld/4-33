@@ -1,7 +1,7 @@
 from classes.cell import Cell
 from classes.field import Field
 from algorithms.breadth_first import breadth_first_regulator
-from algorithms.itterative_deepening_depth_first import itterative_deepening_depth_first_generator
+from algorithms.iterative_deepening_depth_first import itterative_deepening_depth_first_generator
 import sys
 
 class Rush_hour():
