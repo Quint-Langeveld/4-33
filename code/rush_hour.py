@@ -1,6 +1,6 @@
 from classes.cell import Cell
 from classes.field import Field
-from algorithms.breadth_first import breadth_first
+from algorithms.breadth_first import breadth_first_regulator
 import sys
 
 class Rush_hour():
@@ -32,19 +32,7 @@ class Rush_hour():
 
     def play(self, algorithm):
         if algorithm == "breadthfirst":
-            for i, field in enumerate(self.fields):
-                if field.won():
-                    print(len(self.fields))
-                    print("steps to win: ", (len(field.parent_fields) + 1))
-                    for parent_field in field.parent_fields:
-                        print(parent_field)
-                    print(field)
-                    break
-                else:
-                    new_fields = breadth_first(field)
-                    for new_field in new_fields:
-                        #print(new_field)
-                        self.fields.append(new_field)
+            breadth_first_regulator(self.fields)
 
         if algorithm == "itterative_deepening_depth_first":
             itterative_deepening_depth_first(self.fields[0])

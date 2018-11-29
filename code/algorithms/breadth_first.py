@@ -2,6 +2,21 @@ from classes.field import Field
 from classes.cell import Cell
 import copy
 
+def breadth_first_regulator(fields):
+    for field in fields:
+        if field.won():
+            print("steps to win: ", (len(field.parent_fields) + 1))
+            for parent_field in field.parent_fields:
+                print(parent_field)
+            print(field)
+            break
+        else:
+            new_fields = breadth_first(field)
+            for new_field in new_fields:
+                #print(new_field)
+                fields.append(new_field)
+
+
 def breadth_first(old_field):
     new_fields = []
     # iterate over rows in field
