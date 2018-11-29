@@ -6,18 +6,19 @@ import copy
 def itterative_deepening_depth_first_generator(first_field):
     # increase the depth
     for i in range(100):
-        itterative_deepening_depth_first(first_field, i)
+        field = itterative_deepening_depth_first(first_field, i)
 
-        if field.won():
-            print("steps to win: ", (len(field.parent_fields) + 1))
-            for parent_field in field.parent_fields:
-                print(parent_field)
-            print(field)
-            break
-        else:
-            new_fields = breadth_first(field)
-            for new_field in new_fields:
-                fields.append(new_field)
+        if field is not None:
+            if field.won():
+                print("steps to win: ", (len(field.parent_fields) + 1))
+                for parent_field in field.parent_fields:
+                    print(parent_field)
+                print(field)
+                break
+            else:
+                new_fields = breadth_first(field)
+                for new_field in new_fields:
+                    fields.append(new_field)
 
 def itterative_deepening_depth_first(first_field, depth):
     # declare variables
@@ -36,10 +37,11 @@ def itterative_deepening_depth_first(first_field, depth):
     while len(all_fields) > 0:
 
         # if not max depth:
-        if this_depth > 1:
+        if len(field.parent_fields) > (depth - 1):
 
             # go to the first field in the all_fields and make childs
             childs = make_childs(all_fields[0])
+            print(field)
             del all_fields[0]
             for field in childs:
                 all_fields.append(field)
@@ -62,7 +64,7 @@ def itterative_deepening_depth_first(first_field, depth):
                 # empty the max_depth_fields list
                 else:
                     max_depth_fields.remove(field)
-
+    return None
 
 def make_childs(old_field):
 
