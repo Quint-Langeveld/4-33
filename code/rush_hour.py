@@ -33,6 +33,7 @@ class Rush_hour():
         if algorithm == "breadthfirst":
             for i, field in enumerate(self.fields):
                 if field.won():
+                    print(len(self.fields))
                     print("steps to win: ", (len(field.parent_fields) + 1))
                     for parent_field in field.parent_fields:
                         print(parent_field)
