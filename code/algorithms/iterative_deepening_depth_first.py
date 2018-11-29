@@ -234,3 +234,12 @@ def make_childs(old_field):
                                         new_fields.append(new_field_object)
 
     return new_fields
+
+def create_field(old_field_object, new_field_list):
+    new_field_object = Field(old_field_object.size, new_field_list)
+    new_field_object.parent_fields = copy.deepcopy(old_field_object.parent_fields)
+    new_field_object.parent_fields.append(old_field_object.convert_to_string())
+    if new_field_object.convert_to_string() in new_field_object.parent_fields:
+        return None
+    else:
+        return new_field_object
