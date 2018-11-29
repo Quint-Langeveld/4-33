@@ -45,16 +45,13 @@ class Rush_hour():
                     for new_field in new_fields:
                         #print(new_field)
                         self.fields.append(new_field)
-        if algorithm == "itterative_deepening_depth_first":
-            depth = 1
-            while not field.won():
-                ...
-                ...
-                depth += 1
 
+        if algorithm == "itterative_deepening_depth_first":
+            itterative_deepening_depth_first(self.fields[0])
 
         else:
             "to do"
+
 
 
 # start game

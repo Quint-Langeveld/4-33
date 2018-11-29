@@ -5,6 +5,13 @@ import copy
 
 
 def itterative_deepening_depth_first(old_field):
+    depth = 1
+    while not field.won():
+        ...
+        ...
+        depth += 1
+
+
     new_fields = []
 
 
