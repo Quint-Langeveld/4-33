@@ -29,30 +29,30 @@ def itterative_deepening_depth_first(first_field, depth):
     all_fields.append(make_childs(first_field))
     this_depth -= 1
 
-        # go trough the stack
-        while len(all_fields) > 0:
+    # go trough the stack
+    while len(all_fields) > 0:
 
-            # if not max depth:
-            if this_depth > 1:
+        # if not max depth:
+        if this_depth > 1:
 
-                # go to the first field in the all_fields and make childs
-                all_fields.append(make_childs(all_fields[0]))
-                del all_fields[0]
-                this_depth -= 1
+            # go to the first field in the all_fields and make childs
+            all_fields.append(make_childs(all_fields[0]))
+            del all_fields[0]
+            this_depth -= 1
 
-            # if max depth create a list with all fields to be checked
-            else:
-                max_depth_fields.append(make_childs(all_fields[0]))
-                del all_fields[0]
+        # if max depth create a list with all fields to be checked
+        else:
+            max_depth_fields.append(make_childs(all_fields[0]))
+            del all_fields[0]
 
-                # check all fields in the list
-                for field in max_depth_fields:
-                    if field.won():
-                        return field
+            # check all fields in the list
+            for field in max_depth_fields:
+                if field.won():
+                    return field
 
-                    # empty the max_depth_fields list
-                    else:
-                        max_depth_fields.remove(field)
+                # empty the max_depth_fields list
+                else:
+                    max_depth_fields.remove(field)
 
     return 0
 
