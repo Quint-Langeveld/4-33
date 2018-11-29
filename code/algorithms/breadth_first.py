@@ -1,5 +1,5 @@
-from field import Field
-from cell import Cell
+from classes.field import Field
+from classes.cell import Cell
 import copy
 
 def breadth_first(old_field):

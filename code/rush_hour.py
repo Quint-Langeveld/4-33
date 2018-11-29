@@ -1,6 +1,6 @@
-from cell import Cell
-from field import Field
-from breadth_first import breadth_first
+from classes.cell import Cell
+from classes.field import Field
+from algorithms.breadth_first import breadth_first
 import sys
 
 class Rush_hour():
@@ -10,6 +10,7 @@ class Rush_hour():
 
     def load_startfield(self, filename):
         # open startfield file and put lines in list
+        filename = f"startfields/{filename}"
         with open(filename, "r") as f:
             field_data = f.readlines()
             field_size = len(field_data)

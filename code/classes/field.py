@@ -1,4 +1,4 @@
-from cell import Cell
+from classes.cell import Cell
 import copy
 # from breadth_first import breadth_first
 
