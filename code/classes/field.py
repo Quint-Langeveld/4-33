@@ -17,7 +17,7 @@ class Field(object):
             s += "\n"
         return s
 
-    def make_childs(self):
+    def make_childs(self, constraints_applied):
         """Create children fields from field"""
         new_fields = []
         # iterate over rows in field
@@ -57,7 +57,7 @@ class Field(object):
                                             if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
                                         # append new field object to the return list
-                                        new_field_object = self.create_field(new_field)
+                                        new_field_object = self.create_field(new_field, constraints_applied)
                                         if new_field_object != None:
                                             new_fields.append(new_field_object)
                                 # find possible new places for vehicle
@@ -76,7 +76,7 @@ class Field(object):
                                             index_to_check = j + k - m
                                             if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field)
+                                        new_field_object = self.create_field(new_field, constraints_applied)
                                         if new_field_object != None:
                                             new_fields.append(new_field_object)
                         else: # if cell.vehicle_size == 3
@@ -95,7 +95,7 @@ class Field(object):
                                             index_to_check = j - k + m
                                             if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field)
+                                        new_field_object = self.create_field(new_field, constraints_applied)
                                         if new_field_object != None:
                                             new_fields.append(new_field_object)
                                 if j + k <= (self.size - 1) and row[j + k].id == "E":
@@ -112,7 +112,7 @@ class Field(object):
                                             index_to_check = j + k - m
                                             if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field)
+                                        new_field_object = self.create_field(new_field, constraints_applied)
                                         if new_field_object != None:
                                             new_fields.append(new_field_object)
                     else: # if cell.direction == vertical
@@ -131,7 +131,7 @@ class Field(object):
                                             index_to_check = i - k + m
                                             if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field)
+                                        new_field_object = self.create_field(new_field, constraints_applied)
                                         if new_field_object != None:
                                             new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
@@ -147,7 +147,7 @@ class Field(object):
                                             index_to_check = i + k - m
                                             if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field)
+                                        new_field_object = self.create_field(new_field, constraints_applied)
                                         if new_field_object != None:
                                             new_fields.append(new_field_object)
                         else: # if cell.vehicle_size == 3
@@ -166,7 +166,7 @@ class Field(object):
                                             index_to_check = i - k + m
                                             if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field)
+                                        new_field_object = self.create_field(new_field, constraints_applied)
                                         if new_field_object != None:
                                             new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
@@ -183,20 +183,20 @@ class Field(object):
                                             index_to_check = i + k - m
                                             if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field)
+                                        new_field_object = self.create_field(new_field, constraints_applied)
                                         if new_field_object != None:
                                             new_fields.append(new_field_object)
 
         return new_fields
 
-    def create_field(self, new_field_list):
+    def create_field(self, new_field_list, constraints_applied):
         new_field_object = Field(self.size, new_field_list)
         new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
         new_field_object.parent_fields.append(self.convert_to_string())
-        if new_field_object.convert_to_string() in new_field_object.parent_fields:
-            return None
-        else:
-            return new_field_object
+        if constraints_applied == True:
+            if new_field_object.convert_to_string() in new_field_object.parent_fields:
+                return None
+        return new_field_object
 
 
     def won(self):
