@@ -21,5 +21,8 @@ Melle Meewis, Quint Langeveld & Hugo Langeveld
 Acknowledgments:
 We like to thank StackOverflow and the 'minor programmeren van de Uva' for helping us finishing the project. 
 
-
+State Space:
+  Upper & lower bound
+Score Function:
+  aantal zetten!
 
