@@ -63,12 +63,6 @@ def breadth_first(old_field):
                                         # check wether empty cell is needed and put it there if neccesary
                                         if index_to_check <= (old_field.size - 1) and new_field[i][index_to_check].id == cell.id:
                                             new_field[i][index_to_check] = Cell("E", "", 0)
-                                    # create new field object with the new field list containing lists
-                                    # new_field_object = Field(old_field.size, new_field)
-                                    # copy parent fields from field creating child
-                                    #new_field_object.parent_fields = copy.deepcopy(old_field.parent_fields)
-                                    # add current field to parent fields new field
-                                    #new_field_object.parent_fields.append(old_field.convert_to_string())
                                     # append new field object to the return list
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
