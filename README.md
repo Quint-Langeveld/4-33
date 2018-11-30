@@ -22,7 +22,10 @@ Acknowledgments:
 We like to thank StackOverflow and the 'minor programmeren van de Uva' for helping us finishing the project. 
 
 State Space:
-  Upper & lower bound
+  Upper bound: Dit kenmerkt zich in het aantal zetten per auto vermenigvuldigd met elkaar. Voor het eerste bord van de opdracht zal dat dus 253.125.
+  ((aantal kleine auto's)^(grootte bord - 1)) * ((aantal trucks)^(grootte bord - 1))
+  
+  
 Score Function:
   aantal zetten!
 
