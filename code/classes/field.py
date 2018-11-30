@@ -221,3 +221,14 @@ class Field(object):
                 s += cell.id + cell.direction + str(cell.vehicle_size) + " "
             s += "\n"
         return s
+
+        # int = 0
+        # position_dictionary = {}
+        # for i, row in enumerate(self.field):
+        #     for j, cell in enumerate(row):
+        #         if cell.id != "E":
+        #             if cell.id not in position_dictionary.keys():
+        #                 if cell.direction == "H":
+        #                     position_dictionary[cell.id] = j
+        #                 else:
+        #                     position_dictionary[cell.id] = i

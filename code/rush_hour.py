@@ -46,7 +46,6 @@ class Rush_hour():
         elif algorithm == "random_with_constraints":
             random_with_constraints(self.fields[0])
 
-
         else:
             "to do"
 
