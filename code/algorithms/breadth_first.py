@@ -3,36 +3,25 @@ from classes.cell import Cell
 import copy
 
 def breadth_first_regulator(fields):
-    
-    # for field in fields:
-    #     if field.won():
-    #         print("steps to win: ", (len(field.parent_fields) + 1))
-    #         for parent_field in field.parent_fields:
-    #             print(parent_field)
-    #         print(field)
-    #         break
-    #     else:
-    #         new_fields = breadth_first(field)
-    #         for new_field in new_fields:
-    #             fields.append(new_field)
+
+    best_solutions = 0
     won = False
-    step = 0
     while won == False:
         new_fields = breadth_first(fields[0])
         for new_field in new_fields:
             fields.append(new_field)
             if new_field.won():
                 won = True
-            if len(new_field.parent_fields) != step:
-                print(len(new_field.parent_fields))
-                step = len(new_field.parent_fields)
+                best_solutions += 1
+                game_won(new_field, best_solutions)
         del fields[0]
-    
-    print(len(fields))
-    print("steps to win: ", (len(fields[-1].parent_fields) + 1))
-    for parent_field in fields[-1].parent_fields:
+
+def game_won(field, best_solutions):
+    print(f"Solution {best_solutions}:")
+    print("steps to win: ", (len(field.parent_fields) + 1))
+    for parent_field in field.parent_fields:
         print(parent_field)
-    print(fields[-1])
+    print(field)
 
 
 
@@ -211,7 +200,7 @@ def breadth_first(old_field):
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
 
-return new_fields
+    return new_fields
 
 def create_field(old_field_object, new_field_list):
     new_field_object = Field(old_field_object.size, new_field_list)
