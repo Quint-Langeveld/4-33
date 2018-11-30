@@ -2,6 +2,7 @@ from classes.cell import Cell
 from classes.field import Field
 from algorithms.breadth_first import breadth_first_regulator
 from algorithms.iterative_deepening_depth_first import itterative_deepening_depth_first_generator
+from algorithms.random_with_constraints import random_with_constraints
 from algorithms.random import random
 import sys
 
@@ -42,6 +43,10 @@ class Rush_hour():
         elif algorithm == "random":
             random(self.fields[0])
 
+        elif algorithm == "random_with_constraints":
+            random_with_constraints(self.fields[0])
+
+
         else:
             "to do"
 
@@ -54,7 +59,7 @@ if __name__ == "__main__":
         sys.exit(1)
     startfield = sys.argv[1]
     algorithm = sys.argv[2]
-    algorithms = ["breadthfirst", "itterative_deepening_depth_first", "random"]
+    algorithms = ["breadthfirst", "itterative_deepening_depth_first", "random", "random_with_constraints"]
     if algorithm not in algorithms:
         print("Algorithm not supported, please try again")
         sys.exit(1)
