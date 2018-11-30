@@ -24,7 +24,7 @@ def game_won(field, best_solutions):
     print(field)
 
 
-
+# breadth_first method below == make_childs
 def breadth_first(old_field):
     new_fields = []
     # iterate over rows in field
@@ -193,7 +193,7 @@ def breadth_first(old_field):
                                     new_field_object = create_field(old_field, new_field)
                                     if new_field_object != None:
                                         new_fields.append(new_field_object)
-
+ ##
     return new_fields
 
 def create_field(old_field_object, new_field_list):
