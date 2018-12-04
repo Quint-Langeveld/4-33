@@ -26,9 +26,14 @@ class Rush_hour():
                     if cell == "E":
                         new_field_row.append(Cell("E", "", 0))
                     else:
-                        id = cell[0]
-                        direction = cell[1]
-                        vehicle_size = cell[2]
+                        if len(cell) == 3:
+                            id = cell[0]
+                            direction = cell[1]
+                            vehicle_size = cell[2]
+                        else:
+                            id = cell[:2]
+                            direction = cell[2]
+                            vehicle_size = cell[3]
                         new_field_row.append(Cell(id, direction, vehicle_size))
                 new_field.append(new_field_row)
         return [Field(field_size, new_field)]
