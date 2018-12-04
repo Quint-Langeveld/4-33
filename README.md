@@ -60,7 +60,7 @@ This question can be addressed in at least two ways. The First way is looking at
 
 Therefore the problem can better be addressd in a more logical way. If the amount of possible 'next moves' is responsible for the majority of the complexity of the problem, an initial board gets more 'difficult' when the amount of children increases. Therefore we define the term 'difficult' as being:  
 ```
-A 'difficult' board, is a board that uses a lot of steps, relative to the state space of the board
+A 'difficult' board, is a board that uses a lot of steps, relative to the amount of configurations (state space) of that board
 ```
 Then the question arises if there are 'difficult' moves?
 
