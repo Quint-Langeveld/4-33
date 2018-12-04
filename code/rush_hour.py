@@ -2,7 +2,7 @@ from classes.cell import Cell
 from classes.field import Field
 from algorithms.breadth_first import breadth_first_regulator
 from algorithms.iterative_deepening_depth_first import itterative_deepening_depth_first_generator
-from algorithms.random_with_constraints import random_with_constraints
+from algorithms.random_and_bound import random_and_bound
 from algorithms.random import random
 import sys
 
@@ -26,9 +26,14 @@ class Rush_hour():
                     if cell == "E":
                         new_field_row.append(Cell("E", "", 0))
                     else:
-                        id = cell[0]
-                        direction = cell[1]
-                        vehicle_size = cell[2]
+                        if len(cell) == 3:
+                            id = cell[0]
+                            direction = cell[1]
+                            vehicle_size = cell[2]
+                        else:
+                            id = cell[:2]
+                            direction = cell[2]
+                            vehicle_size = cell[3]
                         new_field_row.append(Cell(id, direction, vehicle_size))
                 new_field.append(new_field_row)
         return [Field(field_size, new_field)]
@@ -43,8 +48,8 @@ class Rush_hour():
         elif algorithm == "random":
             random(self.startfield)
 
-        elif algorithm == "random_with_constraints":
-            random_with_constraints(self.startfield)
+        elif algorithm == "random_and_bound":
+            random_and_bound(self.startfield)
 
         else:
             "to do"
@@ -58,7 +63,7 @@ if __name__ == "__main__":
         sys.exit(1)
     startfield = sys.argv[1]
     algorithm = sys.argv[2]
-    algorithms = ["breadthfirst", "itterative_deepening_depth_first", "random", "random_with_constraints"]
+    algorithms = ["breadthfirst", "itterative_deepening_depth_first", "random", "random_and_bound"]
     if algorithm not in algorithms:
         print("Algorithm not supported, please try again")
         sys.exit(1)
