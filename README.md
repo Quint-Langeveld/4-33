@@ -41,7 +41,7 @@ The state space is the number of configurations, where the upper bound and lower
 ### Breadth-First
 For the upper bound of breadth-first, every possible board between the initial state and the solution are included. This means the following:
 ```
-Upper bound (maximum number of fields): this is equal to the state space. In the case of the bord pictured above, this means: 253.125.
+Upper bound (maximum number of fields): this is equal to the state space. In the case of the bord pictured above, this means: 1 mln.
 Lower bound (minimal number of fields): 1
 ```
 
