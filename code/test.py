@@ -3,7 +3,8 @@ import matplotlib as mpl
 import matplotlib.image as mpimg
 import numpy as np
 from matplotlib.colors import ListedColormap
-
+import copy
+import sys
 
 def visualization():
 
@@ -18,21 +19,20 @@ def visualization():
         ["E", "E", "4H3", "4H3", "4H3", "E"],
             ]
 
-    print_field = copy.deepcopy(field)
-
-    field_data = print_field.readlines()
-    for i, line in enumerate(field_data):
-        field_data[i] = line.strip().split()
-    for row in field_data:
-        for cell in row:
-            if cell == "E":
-                cell = 0
-            else:
-                cell += 1
-
-
-
-
+    # print_field = copy.deepcopy(field)
+    #
+    # #field_data = print_field.readlines()
+    # for i, line in enumerate(print_field):
+    #     print_field[i] = [line.strip() for line in print_field.split(',')]
+    #     new_field = []
+    # for row in print_field:
+    #     new_field_row = []
+    #     for cell in row:
+    #         if cell == "E":
+    #             new_field_row.append(Cell(cell = 0))
+    #         if cell != "E":
+    #             new_field_row.append(Cell(cell + 1))
+    #     new_field.append(new_field_row)
 
     # Describing all possible colors for the cars
     # all_colors = ['w', 'k', 'r',
@@ -43,12 +43,12 @@ def visualization():
                     # 'brown'
                     # ]
 
-    # for i in range(len(field)):
-    #    for j in range(len(field[i])):
-    #        if field[i][j] == "E":
-    #            field[i][j] = 0
-    #        else:
-    #            field[i][j] = i + 1
+    for i in range(len(field)):
+        for j in range(len(field[i])):
+            if field[i][j] == "E":
+                field[i][j] = 0
+            elif field[j][0] == 8:
+                field[i][j] = i + 2
 
 
     # padding around the field
