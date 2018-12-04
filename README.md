@@ -6,7 +6,9 @@ Seven problems are given on a 6x6, 9x9 and 12x12 grid with a fixed setup of cars
 # Getting Started:
 ## Prerequisites:
 This codebase is fully written in Python3.6.3. In requirements.txt are all necessary packages included to run the code succesfully. These are easily installed via the provided instruction below:
-  pip install -r requirements.txt
+```
+pip install -r requirements.txt
+```
   
 ## Structure:
 All Python scripts are stored in the folder Code. All input values can be found in the map Data where the map Results hold the  obtained results from the code.
