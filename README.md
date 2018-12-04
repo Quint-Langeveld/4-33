@@ -46,8 +46,8 @@ Lower bound (minimal number of steps): 1
 ```
 
 ### Random 
-For a random algorithm, the upper bound is as big as the solution is.  
+For a random algorithm, the upper bound is as big as the solution. For a representation of the random distribution of solutions, see the results directory.  
   
 ## Objective Function:
-  The number of steps necessary to move the red car to the exit.
+The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space. 
 
