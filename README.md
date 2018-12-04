@@ -51,3 +51,6 @@ For a random algorithm, the upper bound is as big as the solution. For a represe
 ## Objective Function:
 The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space. 
 
+
+## What makes a 'difficult' board difficult?
+This question can be addressed in at least two ways. The First way is looking at the formula of the state space. We can conclude that for a breadth-first algorithm, that the result of the formula gets bigger, when the field get bigger of the amount of cars and trucks get higher. This is a good start, but this is not perfectly true. When, for example, a board gets so full of cars, just the requered move are possible, the theoretcal state space gets very high, but in practice the red car can mocve  
