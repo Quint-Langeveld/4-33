@@ -5,6 +5,7 @@ Seven problems are given on a 6x6, 9x9 and 12x12 grid with a fixed setup of cars
 
 ![alt text](https://github.com/Quint-Langeveld/4-33/blob/master/doc/Rushhour6x6_1.jpg)  
 This is an example of an inittial situation.
+(Image was taken from: http://heuristieken.nl/wiki/index.php?title=File:Rushhour6x6_1.jpg)  
 
 # Getting Started:
 ## Prerequisites:
