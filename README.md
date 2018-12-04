@@ -26,14 +26,16 @@ Melle Meewis, Quint Langeveld & Hugo Langeveld
 We like to thank StackOverflow and the 'minor programmeren van de Uva' for helping us finishing the project. 
 
 ## State Space:
-  These are the number of configurations, where the upper bound and lower bound respectively are the maximum and minimum number of configurations. For example, the first bord has an upper bound of 253.125 configurations. The formula to calculate the upper bound of the state space is given below.  
-  ((number of small cars)^(height grid - 1)) * ((number of trucks)^(height grid - 2))
-
+These are the number of configurations, where the upper bound and lower bound respectively are the maximum and minimum number of configurations. For example, the first bord has an upper bound of 253.125 configurations. The formula to calculate the upper bound of the state space is given below.  
+```
+((number of small cars)^(height grid - 1)) * ((number of trucks)^(height grid - 2))
+```
   
-## Upper and Lower Bound Solutions
-  Upper bound (maximum number of steps): State Space
-  Lower bound (minimal number of steps): 1
-  
+## Upper and Lower Bound Solutions for Breadth-First
+```
+Upper bound (maximum number of steps): For breadth-first, the upper bound is equal to the state space. 
+Lower bound (minimal number of steps): 1
+```
   
 ## Objective Function:
   The number of steps necessary to move the red car to the exit.
