@@ -52,10 +52,12 @@ For a random algorithm, the upper bound is as big as the solution. For a represe
 The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space. 
 
 
-## What makes a 'difficult' board difficult?
+## Advanced
+#### What makes a 'difficult' board difficult?
 This question can be addressed in at least two ways. The First way is looking at the formula of the state space. We can conclude that for a breadth-first algorithm, that the outcome of the formula increases, when the field gets bigger or when the amount of cars and trucks get higher. This is a good start, but this is not perfectly true. When, for example, a board is entirely full with cars but with the red car immediately next to the exit, the outcome of the formula is very big, while the objective score is just one. 
 
 Therefore the problem can better be addressd in a more logical way. If the amount of possible 'next moves' is responsible for the majority of the complexity of the problem, an initial board gets more 'difficult' when the amount of children increases. Then the question arises if there are 'difficult' moves? What devines a move as 'difficult'?  
 
-## What makes a 'difficult' move difficult?
+#### What makes a 'difficult' move difficult?
+
 
