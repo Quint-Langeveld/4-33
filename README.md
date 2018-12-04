@@ -30,16 +30,23 @@ Melle Meewis, Quint Langeveld & Hugo Langeveld
 We like to thank StackOverflow and the 'minor programmeren van de Uva' for helping us finishing the project. 
 
 ## State Space:
-These are the number of configurations, where the upper bound and lower bound respectively are the maximum and minimum number of configurations. For example, the first bord has an upper bound of 253.125 configurations. The formula to calculate the upper bound of the state space is given below.  
+The Statespace can be formulated for different algorithms.
+The state space is the number of configurations, where the upper bound and lower bound respectively are the maximum and minimum number of configurations for a problem. As the lower bound is always the same, namely 1, this is not as interesting as the upper bound of the problem. The formula to calculate the upper bound of the shortest solution is given below.  
 ```
 ((number of small cars)^(height grid - 1)) * ((number of trucks)^(height grid - 2))
 ```
   
-## Upper and Lower Bound Solutions for Breadth-First
+## Upper and Lower Bound Solutions 
+
+### Breadth-First
+For the upper bound of breadth-first, every possible board between the initial state and the solution are included. This means the following:
 ```
-Upper bound (maximum number of steps): For breadth-first, the upper bound is equal to the state space. 
+Upper bound (maximum number of steps): this is equal to the state space. In the case of the bord pictured above, this means: 253.125.
 Lower bound (minimal number of steps): 1
 ```
+
+### Random 
+For a random algorithm, the upper bound is as big as the solution is.  
   
 ## Objective Function:
   The number of steps necessary to move the red car to the exit.
