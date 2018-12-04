@@ -3,6 +3,8 @@
 # My Project:
 Seven problems are given on a 6x6, 9x9 and 12x12 grid with a fixed setup of cars/trucks. There is one exit on the grid and we are supposed to find the best solution of the given problems. Cars and trucks, respectively have a length of two and three, can only move horizontally or vertically depending on their fixed position from the start. Cars and trucks can't jump over or move through other vehicles on the grid to find the best solution.
 
+![alt text](
+
 # Getting Started:
 ## Prerequisites:
 This codebase is fully written in Python3.6.3. In requirements.txt are all necessary packages included to run the code succesfully. These are easily installed via the provided instruction below:
