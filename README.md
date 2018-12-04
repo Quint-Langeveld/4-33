@@ -46,7 +46,7 @@ Lower bound (minimal number of fields): 1
 ```
 
 ### Random 
-For a random algorithm, the upper bound is as big as the solution. For a representation of the random distribution of solutions, see the results directory.  
+In theory, the upper bound of a random algorithm is infiinte. A car can be moved back and forth forever, but when a solution is found, the upper bound is as big as the amount of fields past. For a representation of the random distribution of solutions, see the results directory.  
   
 ## Objective Function:
 The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space. 
