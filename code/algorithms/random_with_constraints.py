@@ -16,6 +16,6 @@ def random_and_bound(startfield):
         if field.won():
             best_solution = copy.deepcopy(current_solution)
 
-    print("steps to win: ", (len(best_solution))
+    print("steps to win: ", len(best_solution))
     for field in best_solution:
         print(field)
