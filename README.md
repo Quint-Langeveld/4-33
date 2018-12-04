@@ -63,5 +63,6 @@ A 'difficult' board, is a board that uses a lot of steps, relative to the state 
 Then the question arises if there are 'difficult' moves?
 
 #### What makes a 'difficult' move difficult?
-For this question, we believe there is not a clear answer. We can try to set up multiple variables who  
+For this question, we believe there is not a clear answer. We can try to set up multiple variables who together try to optimize the program and thereby decreases the 'practical state space'. For example a move that brings the red car closer to the exit can be seen as a good move and by a relative points system can get another value than when the red car takes a step back from the exit. Them same for bringing other cars more to the perifery of the board to eventually make way for the red car, in stead of moveing them to the centre.  
+More work can be done for this. 
 
