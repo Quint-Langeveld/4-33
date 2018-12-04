@@ -45,8 +45,7 @@ class Field(object):
                                             move_possible = False
                                     if move_possible == True:
                                         # copy field as list containing lists
-                                        new_field = copy.deepcopy(self.field) #deepcopy
-                                        # new_field = self.copy()
+                                        new_field = self.make_copy()
                                         # put vehicle in new place
                                         new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -68,8 +67,7 @@ class Field(object):
                                         if row[j + k - l].id != "E" and row[j + k - l].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field) #deepcopy
-                                        # new_field = self.copy()
+                                        new_field = self.make_copy()
                                         new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         for m in range(2, (self.size)):
@@ -86,8 +84,7 @@ class Field(object):
                                         if row[j - k + l].id != "E" and row[j - k + l].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field) #deepcopy
-                                        # new_field = self.copy()
+                                        new_field = self.make_copy()
                                         new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j - k + 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -103,8 +100,7 @@ class Field(object):
                                         if row[j + k - l].id != "E" and row[j + k - l].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field) #deepcopy
-                                        # new_field = self.copy()
+                                        new_field = self.make_copy()
                                         new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j + k - 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -123,8 +119,7 @@ class Field(object):
                                         if self.field[i - k + l][j].id != "E" and self.field[i - k + l][j].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field) #deepcopy
-                                        # new_field = self.copy()
+                                        new_field = self.make_copy()
                                         new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         for m in range(2, (self.size)):
@@ -139,8 +134,7 @@ class Field(object):
                                         if self.field[i + k - l][j].id != "E" and self.field[i + k - l][j].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field) #deepcopy
-                                        # new_field = self.copy()
+                                        new_field = self.make_copy()
                                         new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         for m in range(2, (self.size)):
@@ -157,8 +151,7 @@ class Field(object):
                                         if self.field[i - k + l][j].id != "E" and self.field[i - k + l][j].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field) #deepcopy
-                                        # new_field = self.copy()
+                                        new_field = self.make_copy()
                                         new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i - k + 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -174,8 +167,7 @@ class Field(object):
                                         if self.field[i + k - l][j].id != "E" and self.field[i + k - l][j].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field) #deepcopy
-                                        # new_field = self.copy()
+                                        new_field = self.make_copy()
                                         new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i + k - 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -221,3 +213,12 @@ class Field(object):
         #                     position_dictionary[cell.id] = j
         #                 else:
         #                     position_dictionary[cell.id] = i
+
+    def make_copy(self):
+        copy = []
+        for i in range(self.size):
+            copy.append([])
+        for i, row in enumerate(self.field):
+            for cell in row:
+                copy[i].append(Cell(cell.id, cell.direction, cell.vehicle_size))
+        return copy
