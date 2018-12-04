@@ -31,9 +31,9 @@ We like to thank StackOverflow and the 'minor programmeren van de Uva' for helpi
 
 ## State Space:
 The Statespace can be formulated for different algorithms.
-The state space is the number of configurations, where the upper bound and lower bound respectively are the maximum and minimum number of configurations for a problem. As the lower bound is always the same, namely 1, this is not as interesting as the upper bound of the problem. The formula to calculate the upper bound of the shortest solution is given below.  
+The state space is the number of configurations, where the upper bound and lower bound respectively are the maximum and minimum number of configurations for a problem. As the lower bound is always the same, namely 1, this is not as interesting as the upper bound of the problem. The formula to calculate the upper bound of amount of configrations is:  
 ```
-((number of small cars)^(height grid - 1)) * ((number of trucks)^(height grid - 2))
+((height grid - 1)^(number of small cars)) * ((height grid - 2)^(number of trucks))
 ```
   
 ## Upper and Lower Bound Solutions 
@@ -41,8 +41,8 @@ The state space is the number of configurations, where the upper bound and lower
 ### Breadth-First
 For the upper bound of breadth-first, every possible board between the initial state and the solution are included. This means the following:
 ```
-Upper bound (maximum number of steps): this is equal to the state space. In the case of the bord pictured above, this means: 253.125.
-Lower bound (minimal number of steps): 1
+Upper bound (maximum number of fields): this is equal to the state space. In the case of the bord pictured above, this means: 253.125.
+Lower bound (minimal number of fields): 1
 ```
 
 ### Random 
@@ -58,7 +58,7 @@ This question can be addressed in at least two ways. The First way is looking at
 
 Therefore the problem can better be addressd in a more logical way. If the amount of possible 'next moves' is responsible for the majority of the complexity of the problem, an initial board gets more 'difficult' when the amount of children increases. Therefore we define the term 'difficult' as being:  
 ```
-A 'difficult' board, is a board that uses a lot of moves to complete the board, relative to the state space of the board
+A 'difficult' board, is a board that uses a lot of steps, relative to the state space of the board
 ```
 Then the question arises if there are 'difficult' moves?
 
