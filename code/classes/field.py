@@ -7,7 +7,6 @@ class Field(object):
         self.exit_row_index = (size - 1) // 2
         self.size = size
         self.field = new_field
-        self.parent_fields = []
 
     def __str__(self):
         s = ""
@@ -17,7 +16,7 @@ class Field(object):
             s += "\n"
         return s
 
-    def make_childs(self, constraints_applied):
+    def make_childs(self):
         """Create children fields from field"""
         new_fields = []
         # iterate over rows in field
@@ -46,7 +45,8 @@ class Field(object):
                                             move_possible = False
                                     if move_possible == True:
                                         # copy field as list containing lists
-                                        new_field = copy.deepcopy(self.field)
+                                        new_field = copy.deepcopy(self.field) #deepcopy
+                                        # new_field = self.copy()
                                         # put vehicle in new place
                                         new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -57,9 +57,8 @@ class Field(object):
                                             if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
                                         # append new field object to the return list
-                                        new_field_object = self.create_field(new_field, constraints_applied)
-                                        if new_field_object != None:
-                                            new_fields.append(new_field_object)
+                                        new_field_object = Field(self.size, new_field)
+                                        new_fields.append(new_field_object)
                                 # find possible new places for vehicle
                                 if j + k <= (self.size - 1) and row[j + k].id == "E":
                                     # check if movement to new possible place valid rush hour move
@@ -69,16 +68,16 @@ class Field(object):
                                         if row[j + k - l].id != "E" and row[j + k - l].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field)
+                                        new_field = copy.deepcopy(self.field) #deepcopy
+                                        # new_field = self.copy()
                                         new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         for m in range(2, (self.size)):
                                             index_to_check = j + k - m
                                             if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field, constraints_applied)
-                                        if new_field_object != None:
-                                            new_fields.append(new_field_object)
+                                        new_field_object = Field(self.size, new_field)
+                                        new_fields.append(new_field_object)
                         else: # if cell.vehicle_size == 3
                             for k in range (1, (self.size)):
                                 if j - k >= 0 and row[j - k].id == "E":
@@ -87,7 +86,8 @@ class Field(object):
                                         if row[j - k + l].id != "E" and row[j - k + l].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field)
+                                        new_field = copy.deepcopy(self.field) #deepcopy
+                                        # new_field = self.copy()
                                         new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j - k + 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -95,16 +95,16 @@ class Field(object):
                                             index_to_check = j - k + m
                                             if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field, constraints_applied)
-                                        if new_field_object != None:
-                                            new_fields.append(new_field_object)
+                                        new_field_object = Field(self.size, new_field)
+                                        new_fields.append(new_field_object)
                                 if j + k <= (self.size - 1) and row[j + k].id == "E":
                                     move_possible = True
                                     for l in range(k):
                                         if row[j + k - l].id != "E" and row[j + k - l].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field)
+                                        new_field = copy.deepcopy(self.field) #deepcopy
+                                        # new_field = self.copy()
                                         new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i][j + k - 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -112,9 +112,8 @@ class Field(object):
                                             index_to_check = j + k - m
                                             if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
                                                 new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field, constraints_applied)
-                                        if new_field_object != None:
-                                            new_fields.append(new_field_object)
+                                        new_field_object = Field(self.size, new_field)
+                                        new_fields.append(new_field_object)
                     else: # if cell.direction == vertical
                         if cell.vehicle_size == 2:
                             for k in range(1, (self.size - 1)):
@@ -124,32 +123,32 @@ class Field(object):
                                         if self.field[i - k + l][j].id != "E" and self.field[i - k + l][j].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field)
+                                        new_field = copy.deepcopy(self.field) #deepcopy
+                                        # new_field = self.copy()
                                         new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         for m in range(2, (self.size)):
                                             index_to_check = i - k + m
                                             if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field, constraints_applied)
-                                        if new_field_object != None:
-                                            new_fields.append(new_field_object)
+                                        new_field_object = Field(self.size, new_field)
+                                        new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
                                     move_possible = True
                                     for l in range(k):
                                         if self.field[i + k - l][j].id != "E" and self.field[i + k - l][j].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field)
+                                        new_field = copy.deepcopy(self.field) #deepcopy
+                                        # new_field = self.copy()
                                         new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         for m in range(2, (self.size)):
                                             index_to_check = i + k - m
                                             if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field, constraints_applied)
-                                        if new_field_object != None:
-                                            new_fields.append(new_field_object)
+                                        new_field_object = Field(self.size, new_field)
+                                        new_fields.append(new_field_object)
                         else: # if cell.vehicle_size == 3
                             for k in range(1, (self.size)):
                                 if i - k >= 0 and self.field[i - k][j].id == "E":
@@ -158,7 +157,8 @@ class Field(object):
                                         if self.field[i - k + l][j].id != "E" and self.field[i - k + l][j].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field)
+                                        new_field = copy.deepcopy(self.field) #deepcopy
+                                        # new_field = self.copy()
                                         new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i - k + 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -166,16 +166,16 @@ class Field(object):
                                             index_to_check = i - k + m
                                             if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field, constraints_applied)
-                                        if new_field_object != None:
-                                            new_fields.append(new_field_object)
+                                        new_field_object = Field(self.size, new_field)
+                                        new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
                                     move_possible = True
                                     for l in range(k):
                                         if self.field[i + k - l][j].id != "E" and self.field[i + k - l][j].id != cell.id:
                                             move_possible = False
                                     if move_possible == True:
-                                        new_field = copy.deepcopy(self.field)
+                                        new_field = copy.deepcopy(self.field) #deepcopy
+                                        # new_field = self.copy()
                                         new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
                                         new_field[i + k - 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
@@ -183,20 +183,9 @@ class Field(object):
                                             index_to_check = i + k - m
                                             if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
                                                 new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = self.create_field(new_field, constraints_applied)
-                                        if new_field_object != None:
-                                            new_fields.append(new_field_object)
-
+                                        new_field_object = Field(self.size, new_field)
+                                        new_fields.append(new_field_object)
         return new_fields
-
-    def create_field(self, new_field_list, constraints_applied):
-        new_field_object = Field(self.size, new_field_list)
-        new_field_object.parent_fields = copy.deepcopy(self.parent_fields)
-        new_field_object.parent_fields.append(self.convert_to_string())
-        if constraints_applied == True:
-            if new_field_object.convert_to_string() in new_field_object.parent_fields:
-                return None
-        return new_field_object
 
 
     def won(self):

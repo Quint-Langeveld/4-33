@@ -8,8 +8,8 @@ import sys
 
 class Rush_hour():
     def __init__(self, startfield):
-        self.current_solution = []
         self.fields = self.load_startfield(startfield)
+        self.startfield = self.load_startfield(startfield)[0]
 
     def load_startfield(self, filename):
         # open startfield file and put lines in list
@@ -35,16 +35,16 @@ class Rush_hour():
 
     def play(self, algorithm):
         if algorithm == "breadthfirst":
-            breadth_first_regulator(self.fields)
+            breadth_first_regulator(self.startfield)
 
         elif algorithm == "itterative_deepening_depth_first":
-            itterative_deepening_depth_first_generator(self.fields[0])
+            itterative_deepening_depth_first_generator(self.startfield)
 
         elif algorithm == "random":
-            random(self.fields[0])
+            random(self.startfield)
 
         elif algorithm == "random_with_constraints":
-            random_with_constraints(self.fields[0])
+            random_with_constraints(self.startfield)
 
         else:
             "to do"
