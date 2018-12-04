@@ -35,18 +35,20 @@ The state space is the number of configurations, where the upper bound and lower
 ```
 ((height grid - 1)^(number of small cars)) * ((height grid - 2)^(number of trucks))
 ```
-  
-## Upper and Lower Bound Solutions 
 
-### Breadth-First
-For the upper bound of breadth-first, every possible board between the initial state and the solution are included. This means the following:
+The upper bound is equal to the state space. This means the following:
 ```
-Upper bound (maximum number of fields): this is equal to the state space. In the case of the bord pictured above, this means: 1 mln.
+Upper bound (maximum number of fields): In the case of the bord pictured above, this means: 1 mln.
 Lower bound (minimal number of fields): 1
 ```
 
+## Algorithms 
+We looked into a Breadth-first and a Random algorithm to find a solution for the Rush hour problem. See the algorithm directory for more information
+
+When trying to complete the field above with a random and a breadth-first approach, the difference in memmory use was notable. For a random approach, the amount of fields in memmory was equivalent to the amount of fields past. On the other hand, the maximum amount of fields in memmory for a breadth-first approach was equivalent to the state space.
+
 ### Random 
-In theory, the upper bound of a random algorithm is infiinte. A car can be moved back and forth forever, but when a solution is found, the upper bound is as big as the amount of fields past. For a representation of the random distribution of solutions, see the results directory.  
+In theory, the upper bound of a random algorithm is infinite. For a representation of the random distribution of solutions, see the results directory.  
   
 ## Objective Function:
 The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space. 
