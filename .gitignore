@@ -4,4 +4,11 @@ __pycache__/
 *$py.class
 .DS_Store
 
+# And from the voorbeeldRepo of Maarten-vd-Sande:
+# negeer alle python gecompileerde bestanden van NumPy
+*.pyc
+
+# negeer de bestanden die mijn text-editor aanmaakt
+.idea/*
+
 
