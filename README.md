@@ -36,7 +36,7 @@ The state space is the number of configurations, where the upper bound and lower
 ((height grid - 1)^(number of small cars)) * ((height grid - 2)^(number of trucks))
 ```
 
-The upper bound is equal to the state space. This means the following:
+The upper bound of the solution (the maximum amount of steps necessary to move the red car to the exit) is equal to the state space. This means the following:
 ```
 Upper bound (maximum number of fields): In the case of the bord pictured above, this means: 1 mln.
 Lower bound (minimal number of fields): 1
