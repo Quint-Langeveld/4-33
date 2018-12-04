@@ -45,10 +45,8 @@ Lower bound (minimal number of fields): 1
 ## Algorithms 
 We looked into a Breadth-first and a Random algorithm to find a solution for the Rush hour problem. See the algorithm directory for more information
 
-When trying to complete the field above with a random and a breadth-first approach, the difference in memmory use was notable. For a random approach, the amount of fields in memmory was equivalent to the amount of fields past. On the other hand, the maximum amount of fields in memmory for a breadth-first approach was equivalent to the state space.
+When trying to complete the field above with a random and a breadth-first approach, the difference in memmory use was notable. In theory, the upper bound of a random algorithm is infinite, but in practice the amount of fields in memmory was equivalent to the amount of fields past. On the other hand, the maximum amount of fields in memmory for a breadth-first approach was equivalent to the state space, which is significantly larger and will cause problems further on. 
 
-### Random 
-In theory, the upper bound of a random algorithm is infinite. For a representation of the random distribution of solutions, see the results directory.  
   
 ## Objective Function:
 The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space. 
