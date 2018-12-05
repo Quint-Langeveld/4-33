@@ -1,7 +1,7 @@
 from classes.field import Field
 from classes.cell import Cell
 from classes.archive import Archive
-from visualization import visualization
+from algorithms.visualization import visualization
 import copy
 
 def breadth_first(field, remember_path):
