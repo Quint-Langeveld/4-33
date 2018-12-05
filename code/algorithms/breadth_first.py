@@ -1,6 +1,7 @@
 from classes.field import Field
 from classes.cell import Cell
 from classes.archive import Archive
+from visualization import visualization
 import copy
 
 def breadth_first(field, remember_path):
@@ -18,6 +19,7 @@ def breadth_first(field, remember_path):
                 path = len(archive.trace_path(child_fields[0]))
                 print(path)
             for new_field in new_fields:
+                visualization(new_field.field)
                 archive.add(child_fields[0], new_field)
                 child_fields.append(new_field)
                 if new_field.won():
