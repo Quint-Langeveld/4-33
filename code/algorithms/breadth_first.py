@@ -3,11 +3,9 @@ from classes.cell import Cell
 from classes.archive import Archive
 import copy
 
-def breadth_first_regulator(field):
+def breadth_first(field, remember_path):
 
-    keep_track = True
-
-    if keep_track == True:
+    if remember_path == True:
         archive = Archive()
         archive.add_start_field(field)
         child_fields = [field]
@@ -29,17 +27,21 @@ def breadth_first_regulator(field):
             del child_fields[0]
 
     else:
-        solution_length = 0
+        past_fields = []
         child_fields = [field]
         won = False
         while won == False:
             #print(solution_length)
             new_fields = child_fields[0].make_childs()
-            solution_length += 1
             for new_field in new_fields:
-                child_fields.append(new_field)
+                hashed_field = hash(new_field.convert_to_string())
+                new_field.layer = child_fields[0].layer + 1
+                if hashed_field not in past_fields:
+                    past_fields.append(hashed_field)
+                    child_fields.append(new_field)
                 if new_field.won():
                     won = True
+                    solution_length = new_field.layer + 1
             del child_fields[0]
         print(solution_length)
 

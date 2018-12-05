@@ -1,12 +1,12 @@
 from classes.cell import Cell
 import copy
-# from breadth_first import breadth_first
 
 class Field(object):
     def __init__(self, size, new_field):
         self.exit_row_index = (size - 1) // 2
         self.size = size
         self.field = new_field
+        self.layer = 0
 
     def __str__(self):
         s = ""

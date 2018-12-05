@@ -1,9 +1,10 @@
 from classes.cell import Cell
 from classes.field import Field
-from algorithms.breadth_first import breadth_first_regulator
+from algorithms.breadth_first import breadth_first
 from algorithms.iterative_deepening_depth_first import itterative_deepening_depth_first_generator
 from algorithms.random_and_bound import random_and_bound
 from algorithms.random import random
+from algorithms.branch_and_bound import branch_and_bound
 import sys
 
 class Rush_hour():
@@ -40,7 +41,7 @@ class Rush_hour():
 
     def play(self, algorithm):
         if algorithm == "breadthfirst":
-            breadth_first_regulator(self.startfield)
+            breadth_first(self.startfield, True)
 
         elif algorithm == "itterative_deepening_depth_first":
             itterative_deepening_depth_first_generator(self.startfield)
@@ -50,6 +51,9 @@ class Rush_hour():
 
         elif algorithm == "random_and_bound":
             random_and_bound(self.startfield)
+
+        elif algorithm == "branch_and_bound":
+            branch_and_bound(self.startfield)
 
         else:
             "to do"
@@ -63,9 +67,12 @@ if __name__ == "__main__":
         sys.exit(1)
     startfield = sys.argv[1]
     algorithm = sys.argv[2]
-    algorithms = ["breadthfirst", "itterative_deepening_depth_first", "random", "random_and_bound"]
+    algorithms = ["breadthfirst", "itterative_deepening_depth_first", "random", "random_and_bound", "branch_and_bound"]
     if algorithm not in algorithms:
         print("Algorithm not supported, please try again")
+        print("You can choose between the following:")
+        for algorithm in algorithms:
+            print(algorithm)
         sys.exit(1)
     rush_hour = Rush_hour(startfield)
     rush_hour.play(algorithm)
