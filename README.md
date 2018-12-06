@@ -49,14 +49,19 @@ When trying to complete the field above with a random and a breadth-first approa
 
   
 ## Objective Function:
-The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space. 
+The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space and the theoretical lower bound of the objective function can simply be set on 1, the lowest amount of moves necessary to reach the objective. 
 
 
 ## Advanced
 #### What makes a 'difficult' board difficult?
-This question can be addressed in at least two ways. The First way is looking at the formula of the state space. We can conclude that for a breadth-first algorithm, that the outcome of the formula increases, when the field gets bigger or when the amount of cars and trucks get higher. This is a good start, but this is not perfectly true. When, for example, a board is entirely full with cars but with the red car immediately next to the exit, the outcome of the formula is very big, while the objective score is just one.  
+This question can be addressed in at least two ways. The First way is looking at the formula of the state space. We can conclude that for a breadth-first algorithm, that the outcome of the formula increases, when the field gets bigger or when the amount of cars and trucks get higher. See the figure beneath for the increasing theoretical state space for a 6x6 Rush hour bord. There is clearly fisible that the state space (and thereby maybe the difficulty of the board) increases exponentially. 
 
-Therefore the problem can better be addressd in a more logical way. If the amount of possible 'next moves' is responsible for the majority of the complexity of the problem, an initial board gets more 'difficult' when the amount of children increases. Therefore we define the term 'difficult' as being:  
+![alt text](https://github.com/Quint-Langeveld/4-33/blob/master/doc/Schermafbeelding%202018-12-06%20om%2012.14.10.png)
+
+Well, this is a good start, but this is not perfectly true. When, for example, a board is entirely full with cars but with the red car immediately next to the exit, the outcome of the state space formula is very big, while the objective score is just one.
+
+Therefore the problem can better be addressd in a more logical way. If the amount of possible 'next moves' is responsible for the majority of the complexity of the problem, an initial board gets more 'difficult' when the amount of children increases. Unfortunately, we are not able to transform this mathematical behaviour in a formula which approaches the real state space. Therefore we define the term 'difficult' as being:  
+
 ```
 A 'difficult' board, is a board that uses a lot of steps, relative to the amount of configurations (state space) of that board
 ```
