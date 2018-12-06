@@ -42,8 +42,7 @@ def visualization(field):
         for j, cell in enumerate(row):
             if isinstance(cell, int):
                 list_ids.append(cell)
-            elif cell == 'R':
-                print('aa')
+            elif cell == 'R':\
                 print_field[i][j] = 10
 
     colors_needed = len(list_ids) + 3
