@@ -56,6 +56,8 @@ The objective for Rush hour is met when the red car find it's way out of the bor
 #### What makes a 'difficult' board difficult?
 This question can be addressed in at least two ways. The First way is looking at the formula of the state space. We can conclude that for a breadth-first algorithm, that the outcome of the formula increases, when the field gets bigger or when the amount of cars and trucks get higher. This is a good start, but this is not perfectly true. When, for example, a board is entirely full with cars but with the red car immediately next to the exit, the outcome of the formula is very big, while the objective score is just one.  
 
+![alt text](https://github.com/Quint-Langeveld/4-33/blob/master/doc/Schermafbeelding%202018-12-06%20om%2012.09.00.png)
+
 Therefore the problem can better be addressd in a more logical way. If the amount of possible 'next moves' is responsible for the majority of the complexity of the problem, an initial board gets more 'difficult' when the amount of children increases. Therefore we define the term 'difficult' as being:  
 ```
 A 'difficult' board, is a board that uses a lot of steps, relative to the amount of configurations (state space) of that board
