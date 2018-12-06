@@ -49,7 +49,7 @@ When trying to complete the field above with a random and a breadth-first approa
 
   
 ## Objective Function:
-The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space. 
+The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space and the theoretical lower bound of the objective function can simply be set on 1, the lowest amount of moves necessary to reach the objective. 
 
 
 ## Advanced
