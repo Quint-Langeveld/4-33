@@ -58,7 +58,9 @@ This question can be addressed in at least two ways. The First way is looking at
 
 ![alt text](https://github.com/Quint-Langeveld/4-33/blob/master/doc/Schermafbeelding%202018-12-06%20om%2012.14.10.png)
 
-Well, this is a good start, but this is not perfectly true. When, for example, a board is entirely full with cars but with the red car immediately next to the exit, the outcome of the state space formula is very big, while the objective score is just one.
+Well, this is a good start, but this is not perfectly true. When, for example the bord beteath that is entirely full with cars but every move is restricted, the outcome of the state space formula is over 78 mld, while the the real state space is equeal to the objective function, namely 8.
+
+![alt text](https://github.com/Quint-Langeveld/4-33/blob/master/doc/Schermafbeelding%202018-12-06%20om%2015.46.20.png)
 
 Therefore the problem can better be addressd in a more logical way. If the amount of possible 'next moves' is responsible for the majority of the complexity of the problem, an initial board gets more 'difficult' when the amount of children increases. Unfortunately, we are not able to transform this mathematical behaviour in a formula which approaches the real state space. Therefore we define the term 'difficult' as being:  
 
