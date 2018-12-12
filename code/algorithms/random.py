@@ -19,5 +19,8 @@ def random(startfield):
             solutions[solution_length] =  int(solutions[solution_length] + 1)
         except:
             solutions[solution_length] = int(1)
+        print(solution_length)
+
+
     print(solutions)
     print(nr_of_nodes)
