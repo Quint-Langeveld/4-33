@@ -6,12 +6,12 @@ import copy
 
 def breadth_first(field, remember_path):
 
+    nr_of_nodes = 0
     if remember_path == True:
         archive = Archive()
         archive.add_start_field(field)
         child_fields = [field]
         best_solutions = 0
-        nr_of_nodes = 0
         won = False
         path = 0
         while won == False:
@@ -29,6 +29,7 @@ def breadth_first(field, remember_path):
                     best_solutions += 1
                     game_won(archive, new_field, best_solutions)
             del child_fields[0]
+            print(nr_of_nodes)
 
     else:
         past_fields = []
@@ -37,6 +38,7 @@ def breadth_first(field, remember_path):
         while won == False:
             #print(solution_length)
             new_fields = child_fields[0].make_childs()
+            nr_of_nodes += 1
             for new_field in new_fields:
                 hashed_field = hash(new_field.convert_to_string())
                 new_field.layer = child_fields[0].layer + 1
@@ -48,7 +50,7 @@ def breadth_first(field, remember_path):
                     solution_length = new_field.layer + 1
             del child_fields[0]
         print(solution_length)
-
+        print(nr_of_nodes)
 
 def game_won(archive, field, best_solutions):
     path = archive.trace_path(field)
@@ -57,4 +59,3 @@ def game_won(archive, field, best_solutions):
     for field in path:
         print(field)
     print(len(archive.fields))
-    print(nr_of_nodes)
