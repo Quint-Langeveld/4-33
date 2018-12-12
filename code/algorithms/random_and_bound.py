@@ -5,7 +5,8 @@ import copy
 def random_and_bound(startfield):
     best_solution = []
     bound = 1000
-    for i in range(10000):
+    nr_of_nodes = 0
+    for i in range(1000):
         print(i)
         print(bound)
         current_solution = [startfield.convert_to_string()]
@@ -13,6 +14,7 @@ def random_and_bound(startfield):
         field = startfield
         while not field.won() and (len(best_solution) == 0 or (len(current_solution) <= bound)):
             child_fields = field.make_childs()
+            nr_of_nodes += 1
             number = randint(0, (len(child_fields) - 1))
             field = child_fields[number]
             current_solution.append(field.convert_to_string())
@@ -23,3 +25,4 @@ def random_and_bound(startfield):
     print("steps to win: ", len(best_solution))
     for field in best_solution:
         print(field)
+    print(nr_of_nodes)
