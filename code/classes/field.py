@@ -19,9 +19,8 @@ class Field(object):
     def make_childs(self):
         """Create children fields from field"""
         new_fields = []
-        # iterate over rows in field
+        # iterate over rows in field and cells in row
         for i, row in enumerate(self.field):
-            # iterate over cell in row
             for j in range(len(row)):
                 # check if cell is part of car that is already handled by for loop
                 if row[j].id == row[j-1].id or row[j].id == self.field[i - 1][j].id:
@@ -30,57 +29,13 @@ class Field(object):
                 cell = row[j]
                 # check if cell is part of vehicle and size and direction if vehicle
                 if cell.id != "E":
-                    # new_fields += self.make_moves(cell, i, j)
                     if cell.direction == "H":
-                        #if cell.vehicle_size == 2:
-                            new_fields += self.make_moves(cell, i, j)
-
-
-                            # # find possible new places for vehicle
-                            # for k in range(1, (self.size)):
-                            #     if j - k >= 0 and row[j - k].id == "E":
-                            #         if self.check_if_valid_move(cell, -k, i, j):
-                            #             new_field_object = self.create_new_field(cell, i, j, -k)
-                            #             new_fields.append(new_field_object)
-                            #     # find possible new places for vehicle
-                            #     if j + k <= (self.size - 1) and row[j + k].id == "E":
-                            #         if self.check_if_valid_move(cell, k, i, j):
-                            #             new_field_object = self.create_new_field(cell, i, j, k)
-                            #             new_fields.append(new_field_object)
-                        #else: # if cell.vehicle_size == 3
-                            # for k in range (1, (self.size)):
-                            #     if j - k >= 0 and row[j - k].id == "E":
-                            #         if self.check_if_valid_move(cell, -k, i, j):
-                            #             new_field_object = self.create_new_field(cell, i, j, -k)
-                            #             new_fields.append(new_field_object)
-                            #     if j + k <= (self.size - 1) and row[j + k].id == "E":
-                            #         if self.check_if_valid_move(cell, k, i, j):
-                            #             new_field_object = self.create_new_field(cell, i, j, k)
-                            #             new_fields.append(new_field_object)
+                        new_fields += self.make_horizontal_moves(cell, i, j)
                     else: # if cell.direction == vertical
-                        if cell.vehicle_size == 2:
-                            for k in range(1, (self.size - 1)):
-                                if i - k >= 0 and self.field[i - k][j].id == "E":
-                                    if self.check_if_valid_move(cell, -k, i, j):
-                                        new_field_object = self.create_new_field(cell, i, j, -k)
-                                        new_fields.append(new_field_object)
-                                if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
-                                    if self.check_if_valid_move(cell, k, i, j):
-                                        new_field_object = self.create_new_field(cell, i, j, k)
-                                        new_fields.append(new_field_object)
-                        else: # if cell.vehicle_size == 3
-                            for k in range(1, (self.size)):
-                                if i - k >= 0 and self.field[i - k][j].id == "E":
-                                    if self.check_if_valid_move(cell, -k, i, j):
-                                        new_field_object = self.create_new_field(cell, i, j, -k)
-                                        new_fields.append(new_field_object)
-                                if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
-                                    if self.check_if_valid_move(cell, k, i, j):
-                                        new_field_object = self.create_new_field(cell, i, j, k)
-                                        new_fields.append(new_field_object)
+                        new_fields += self.make_vertical_moves(cell, i, j)
         return new_fields
 
-    def make_moves(self, cell, i, j):
+    def make_horizontal_moves(self, cell, i, j):
         new_fields = []
         for k in range(1, self.size):
             if j - k >= 0 and self.field[i][j - k].id == "E":
@@ -91,14 +46,28 @@ class Field(object):
                 if self.check_if_valid_move(cell, k, i, j):
                     new_field_object = self.create_new_field(cell, i, j, k)
                     new_fields.append(new_field_object)
-            # if i - k >= 0 and self.field[i - k][j].id == "E":
-            #     if self.check_if_valid_move(cell, -k, i, j):
-            #         new_field_object = self.create_new_field(cell, i, j, -k)
+
+
+        return new_fields
+
+
+    def make_vertical_moves(self, cell, i, j):
+        new_fields = []
+        # for k in range(0, self.size - 1):
+        for k in range(1, self.size):
+            # if self.field[k][j].id == "E":
+            #     if self.check_if_valid_move(cell, k, i, j):
+            #         new_field_object = self.create_new_field(cell, i, j, i-k)
             #         new_fields.append(new_field_object)
-            # if i + k >= (self.size - 1) and self.field[i - k][j].id == "E":
-            #     if self.check_if_valid_move(cell, -k, i, j):
-            #         new_field_object = self.create_new_field(cell, i, j, -k)
-            #         new_fields.append(new_field_object)
+            #
+            if i - k >= 0 and self.field[i - k][j].id == "E":
+                if self.check_if_valid_move(cell, -k, i, j):
+                    new_field_object = self.create_new_field(cell, i, j, -k)
+                    new_fields.append(new_field_object)
+            if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
+                if self.check_if_valid_move(cell, k, i, j):
+                    new_field_object = self.create_new_field(cell, i, j, k)
+                    new_fields.append(new_field_object)
         return new_fields
 
 
@@ -107,20 +76,21 @@ class Field(object):
         if k > 0:
             pos = -1
         new_field = self.make_copy()
+        new_cell = Cell(cell.id, cell.direction, cell.vehicle_size)
         if cell.direction == "H":
-            new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
-            new_field[i][j + k + (1 * pos)] = Cell(cell.id, cell.direction, cell.vehicle_size)
+            new_field[i][j + k] = new_cell
+            new_field[i][j + k + (1 * pos)] = new_cell
             if cell.vehicle_size == 3:
-                new_field[i][j + k + (2 * pos)] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                new_field[i][j + k + (2 * pos)] = new_cell
             for m in range(cell.vehicle_size, (self.size)):
                 index_to_check = j + k + (m * pos)
                 if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
                     new_field[i][index_to_check] = Cell("E", "", 0)
         else:
-            new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-            new_field[i + k + (1 * pos)][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+            new_field[i + k][j] = new_cell
+            new_field[i + k + (1 * pos)][j] = new_cell
             if cell.vehicle_size == 3:
-                new_field[i + k + (2 * pos)][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+                new_field[i + k + (2 * pos)][j] = new_cell
             for m in range(cell.vehicle_size, (self.size)):
                 index_to_check = i + k + (m * pos)
                 if index_to_check <= (self.size - 1) and new_field[index_to_check][j].id == cell.id:
