@@ -28,156 +28,119 @@ class Field(object):
                     continue
                 # create cell variable equal to Cell object being handled
                 cell = row[j]
-                # check if cell is part of vehicle
+                # check if cell is part of vehicle and size and direction if vehicle
                 if cell.id != "E":
-                    # check if vehicle moves horizontal or vertical
+                    # new_fields += self.make_moves(cell, i, j)
                     if cell.direction == "H":
-                        # check size of horizontal moving vehicle
-                        if cell.vehicle_size == 2:
-                            # find possible new places for vehicle
-                            for k in range(1, (self.size)):
-                                if j - k >= 0 and row[j - k].id == "E":
-                                    # check if movement to new possible place valid rush hour move
-                                    move_possible = True
-                                    for l in range(k):
-                                        # set move_possible to false if other vechicle blocks move
-                                        if row[j - k + l].id != "E" and row[j - k + l].id != cell.id:
-                                            move_possible = False
-                                    if move_possible == True:
-                                        # copy field as list containing lists
-                                        new_field = self.make_copy()
-                                        # put vehicle in new place
-                                        new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        # move vehicle form old place by putting empty cells back
-                                        for m in range(2, (self.size)):
-                                            index_to_check = j - k + m
-                                            # check wether empty cell is needed and put it there if neccesary
-                                            if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
-                                                new_field[i][index_to_check] = Cell("E", "", 0)
-                                        # append new field object to the return list
-                                        new_field_object = Field(self.size, new_field)
-                                        new_fields.append(new_field_object)
-                                # find possible new places for vehicle
-                                if j + k <= (self.size - 1) and row[j + k].id == "E":
-                                    # check if movement to new possible place valid rush hour move
-                                    move_possible = True
-                                    for l in range(k):
-                                        # set move_possible to false if other vechicle blocks move
-                                        if row[j + k - l].id != "E" and row[j + k - l].id != cell.id:
-                                            move_possible = False
-                                    if move_possible == True:
-                                        new_field = self.make_copy()
-                                        new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        for m in range(2, (self.size)):
-                                            index_to_check = j + k - m
-                                            if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
-                                                new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_field_object = Field(self.size, new_field)
-                                        new_fields.append(new_field_object)
-                        else: # if cell.vehicle_size == 3
-                            for k in range (1, (self.size)):
-                                if j - k >= 0 and row[j - k].id == "E":
-                                    move_possible = True
-                                    for l in range(k):
-                                        if row[j - k + l].id != "E" and row[j - k + l].id != cell.id:
-                                            move_possible = False
-                                    if move_possible == True:
-                                        new_field = self.make_copy()
-                                        new_field[i][j - k] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i][j - k + 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i][j - k + 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        for m in range(3, (self.size)):
-                                            index_to_check = j - k + m
-                                            if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
-                                                new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_field_object = Field(self.size, new_field)
-                                        new_fields.append(new_field_object)
-                                if j + k <= (self.size - 1) and row[j + k].id == "E":
-                                    move_possible = True
-                                    for l in range(k):
-                                        if row[j + k - l].id != "E" and row[j + k - l].id != cell.id:
-                                            move_possible = False
-                                    if move_possible == True:
-                                        new_field = self.make_copy()
-                                        new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i][j + k - 1] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i][j + k - 2] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        for m in range(3, (self.size)):
-                                            index_to_check = j + k - m
-                                            if index_to_check >= 0 and new_field[i][index_to_check].id == cell.id:
-                                                new_field[i][index_to_check] = Cell("E", "", 0)
-                                        new_field_object = Field(self.size, new_field)
-                                        new_fields.append(new_field_object)
+                        #if cell.vehicle_size == 2:
+                            new_fields += self.make_moves(cell, i, j)
+
+
+                            # # find possible new places for vehicle
+                            # for k in range(1, (self.size)):
+                            #     if j - k >= 0 and row[j - k].id == "E":
+                            #         if self.check_if_valid_move(cell, -k, i, j):
+                            #             new_field_object = self.create_new_field(cell, i, j, -k)
+                            #             new_fields.append(new_field_object)
+                            #     # find possible new places for vehicle
+                            #     if j + k <= (self.size - 1) and row[j + k].id == "E":
+                            #         if self.check_if_valid_move(cell, k, i, j):
+                            #             new_field_object = self.create_new_field(cell, i, j, k)
+                            #             new_fields.append(new_field_object)
+                        #else: # if cell.vehicle_size == 3
+                            # for k in range (1, (self.size)):
+                            #     if j - k >= 0 and row[j - k].id == "E":
+                            #         if self.check_if_valid_move(cell, -k, i, j):
+                            #             new_field_object = self.create_new_field(cell, i, j, -k)
+                            #             new_fields.append(new_field_object)
+                            #     if j + k <= (self.size - 1) and row[j + k].id == "E":
+                            #         if self.check_if_valid_move(cell, k, i, j):
+                            #             new_field_object = self.create_new_field(cell, i, j, k)
+                            #             new_fields.append(new_field_object)
                     else: # if cell.direction == vertical
                         if cell.vehicle_size == 2:
                             for k in range(1, (self.size - 1)):
                                 if i - k >= 0 and self.field[i - k][j].id == "E":
-                                    move_possible = True
-                                    for l in range(k):
-                                        if self.field[i - k + l][j].id != "E" and self.field[i - k + l][j].id != cell.id:
-                                            move_possible = False
-                                    if move_possible == True:
-                                        new_field = self.make_copy()
-                                        new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        for m in range(2, (self.size)):
-                                            index_to_check = i - k + m
-                                            if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
-                                                new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = Field(self.size, new_field)
+                                    if self.check_if_valid_move(cell, -k, i, j):
+                                        new_field_object = self.create_new_field(cell, i, j, -k)
                                         new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
-                                    move_possible = True
-                                    for l in range(k):
-                                        if self.field[i + k - l][j].id != "E" and self.field[i + k - l][j].id != cell.id:
-                                            move_possible = False
-                                    if move_possible == True:
-                                        new_field = self.make_copy()
-                                        new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        for m in range(2, (self.size)):
-                                            index_to_check = i + k - m
-                                            if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
-                                                new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = Field(self.size, new_field)
+                                    if self.check_if_valid_move(cell, k, i, j):
+                                        new_field_object = self.create_new_field(cell, i, j, k)
                                         new_fields.append(new_field_object)
                         else: # if cell.vehicle_size == 3
                             for k in range(1, (self.size)):
                                 if i - k >= 0 and self.field[i - k][j].id == "E":
-                                    move_possible = True
-                                    for l in range(k):
-                                        if self.field[i - k + l][j].id != "E" and self.field[i - k + l][j].id != cell.id:
-                                            move_possible = False
-                                    if move_possible == True:
-                                        new_field = self.make_copy()
-                                        new_field[i - k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i - k + 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i - k + 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        for m in range(3, (self.size)):
-                                            index_to_check = i - k + m
-                                            if index_to_check <= self.size - 1 and new_field[index_to_check][j].id == cell.id:
-                                                new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = Field(self.size, new_field)
+                                    if self.check_if_valid_move(cell, -k, i, j):
+                                        new_field_object = self.create_new_field(cell, i, j, -k)
                                         new_fields.append(new_field_object)
                                 if i + k <= (self.size - 1) and self.field[i + k][j].id == "E":
-                                    move_possible = True
-                                    for l in range(k):
-                                        if self.field[i + k - l][j].id != "E" and self.field[i + k - l][j].id != cell.id:
-                                            move_possible = False
-                                    if move_possible == True:
-                                        new_field = self.make_copy()
-                                        new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i + k - 1][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        new_field[i + k - 2][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
-                                        for m in range(3, (self.size)):
-                                            index_to_check = i + k - m
-                                            if index_to_check >= 0 and new_field[index_to_check][j].id == cell.id:
-                                                new_field[index_to_check][j] = Cell("E", "", 0)
-                                        new_field_object = Field(self.size, new_field)
+                                    if self.check_if_valid_move(cell, k, i, j):
+                                        new_field_object = self.create_new_field(cell, i, j, k)
                                         new_fields.append(new_field_object)
         return new_fields
+
+    def make_moves(self, cell, i, j):
+        new_fields = []
+        for k in range(1, self.size):
+            if j - k >= 0 and self.field[i][j - k].id == "E":
+                if self.check_if_valid_move(cell, -k, i, j):
+                    new_field_object = self.create_new_field(cell, i, j, -k)
+                    new_fields.append(new_field_object)
+            if j + k <= (self.size - 1) and self.field[i][j + k].id == "E":
+                if self.check_if_valid_move(cell, k, i, j):
+                    new_field_object = self.create_new_field(cell, i, j, k)
+                    new_fields.append(new_field_object)
+            # if i - k >= 0 and self.field[i - k][j].id == "E":
+            #     if self.check_if_valid_move(cell, -k, i, j):
+            #         new_field_object = self.create_new_field(cell, i, j, -k)
+            #         new_fields.append(new_field_object)
+            # if i + k >= (self.size - 1) and self.field[i - k][j].id == "E":
+            #     if self.check_if_valid_move(cell, -k, i, j):
+            #         new_field_object = self.create_new_field(cell, i, j, -k)
+            #         new_fields.append(new_field_object)
+        return new_fields
+
+
+    def create_new_field(self, cell, i, j, k):
+        pos = 1
+        if k > 0:
+            pos = -1
+        new_field = self.make_copy()
+        if cell.direction == "H":
+            new_field[i][j + k] = Cell(cell.id, cell.direction, cell.vehicle_size)
+            new_field[i][j + k + (1 * pos)] = Cell(cell.id, cell.direction, cell.vehicle_size)
+            if cell.vehicle_size == 3:
+                new_field[i][j + k + (2 * pos)] = Cell(cell.id, cell.direction, cell.vehicle_size)
+            for m in range(cell.vehicle_size, (self.size)):
+                index_to_check = j + k + (m * pos)
+                if index_to_check <= (self.size - 1) and new_field[i][index_to_check].id == cell.id:
+                    new_field[i][index_to_check] = Cell("E", "", 0)
+        else:
+            new_field[i + k][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+            new_field[i + k + (1 * pos)][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+            if cell.vehicle_size == 3:
+                new_field[i + k + (2 * pos)][j] = Cell(cell.id, cell.direction, cell.vehicle_size)
+            for m in range(cell.vehicle_size, (self.size)):
+                index_to_check = i + k + (m * pos)
+                if index_to_check <= (self.size - 1) and new_field[index_to_check][j].id == cell.id:
+                    new_field[index_to_check][j] = Cell("E", "", 0)
+        new_field_object = Field(self.size, new_field)
+        return new_field_object
+
+    def check_if_valid_move(self, cell, k, i, j):
+        pos = 1
+        if k > 0:
+            pos = -1
+        move_possible = True
+        for l in range(abs(k)):
+            if cell.direction == "H":
+                if self.field[i][j + k + (l * pos)].id != "E" and self.field[i][j + k + (l * pos)].id != cell.id:
+                    move_possible = False
+            else:
+                if self.field[i + k + (l * pos)][j].id != "E" and self.field[i + k + (l * pos)][j].id != cell.id:
+                    move_possible = False
+        return move_possible
 
 
     def won(self):
@@ -202,17 +165,6 @@ class Field(object):
                 s += cell.id + cell.direction + str(cell.vehicle_size) + " "
             s += "\n"
         return s
-
-        # int = 0
-        # position_dictionary = {}
-        # for i, row in enumerate(self.field):
-        #     for j, cell in enumerate(row):
-        #         if cell.id != "E":
-        #             if cell.id not in position_dictionary.keys():
-        #                 if cell.direction == "H":
-        #                     position_dictionary[cell.id] = j
-        #                 else:
-        #                     position_dictionary[cell.id] = i
 
     def make_copy(self):
         copy = []

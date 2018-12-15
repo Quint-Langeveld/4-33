@@ -30,14 +30,7 @@ def breadth_first(field, remember_path):
                     best_solutions += 1
                     game_won(archive, new_field, best_solutions)
             del child_fields[0]
-            print(nr_of_nodes)
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> e87d8dc3b3ec6925a4b964ef3fcf5fdfc91dffbe
-
+        print(nr_of_nodes)
     else:
         past_fields = []
         child_fields = [field]
@@ -58,11 +51,7 @@ def breadth_first(field, remember_path):
             del child_fields[0]
         print(solution_length)
         print(nr_of_nodes)
-<<<<<<< HEAD
-=======
 
-
->>>>>>> e87d8dc3b3ec6925a4b964ef3fcf5fdfc91dffbe
 
 def game_won(archive, field, best_solutions):
     path = archive.trace_path(field)
@@ -70,4 +59,4 @@ def game_won(archive, field, best_solutions):
     print("steps to win: ", len(path))
     for field in path:
         print(field)
-    print(len(archive.fields))
+    #print(len(archive.fields))

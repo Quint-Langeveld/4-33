@@ -1,7 +1,6 @@
 from classes.cell import Cell
 from classes.field import Field
 from algorithms.breadth_first import breadth_first
-from algorithms.iterative_deepening_depth_first import itterative_deepening_depth_first_generator
 from algorithms.random_and_bound import random_and_bound
 from algorithms.random import random
 from algorithms.branch_and_bound import branch_and_bound
