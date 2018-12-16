@@ -13,7 +13,7 @@ class Rush_hour():
 
     def load_startfield(self, filename):
         # open startfield file and put lines in list
-        filename = f"../data/startfields/{filename}"
+        filename = f"data/startfields/{filename}"
         with open(filename, "r") as f:
             field_data = f.readlines()
             field_size = len(field_data)
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         sys.exit(1)
     startfield = sys.argv[1]
     algorithm = sys.argv[2]
-    algorithms = ["breadthfirst", "itterative_deepening_depth_first", "random", "random_and_bound", "branch_and_bound"]
+    algorithms = ["breadthfirst", "random", "random_and_bound", "branch_and_bound"]
     if algorithm not in algorithms:
         print("Algorithm not supported, please try again")
         print("You can choose between the following:")
