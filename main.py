@@ -6,7 +6,7 @@ from classes.rush_hour import Rush_hour
 
 def main():
     if len(sys.argv) != 3:
-        print("Usage: python main.py startfield algorithm")
+        print("Usage: python main.py field#.txt algorithm")
         sys.exit(1)
     startfield = sys.argv[1]
     algorithm = sys.argv[2]
@@ -22,7 +22,15 @@ def main():
         iterations = int(input("How many iterations would you like to do?\n"))
     if algorithm in ["random_and_bound", "branch_and_bound"]:
         bound = int(input("What initial bound would you like to set?\n"))
-    rush_hour = Rush_hour(startfield, iterations, bound)
+    if algorithm == "breadthfirst":
+        keep_track = input("Would you like to keep track of the moves made by algoritmh?\n"
+                            "Default is NO, Use Yes for keeping track.\n"
+                            "WARNING: THIS MAKE THE PROGRAM MUCH SLOWER\n")
+        if keep_track.lowercase() in ["yes", "y"]:
+            keep_track = True
+        else:
+            keep_track = False
+    rush_hour = Rush_hour(startfield, iterations, bound, keep_track)
     rush_hour.play(algorithm)
 
 if __name__ == "__main__":

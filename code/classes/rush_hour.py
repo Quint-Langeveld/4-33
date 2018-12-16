@@ -7,15 +7,17 @@ from algorithms.branch_and_bound import branch_and_bound
 import sys
 
 class Rush_hour():
-    def __init__(self, startfield, iterations, bound):
+    def __init__(self, startfield, iterations, bound, keep_track):
         self.fields = self.load_startfield(startfield)
         self.startfield = self.load_startfield(startfield)[0]
         self.iterations = iterations
         self.bound = bound
+        self.keep_track = keep_track
 
     def load_startfield(self, filename):
         # open startfield file and put lines in list
         filename = f"data/startfields/{filename}"
+        print(filename)
         with open(filename, "r") as f:
             field_data = f.readlines()
             field_size = len(field_data)
@@ -42,7 +44,7 @@ class Rush_hour():
 
     def play(self, algorithm):
         if algorithm == "breadthfirst":
-            breadth_first(self.startfield, False)
+            breadth_first(self.startfield, keep_track)
 
         elif algorithm == "random":
             random(self.startfield, self.iterations)

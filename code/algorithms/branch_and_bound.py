@@ -17,8 +17,7 @@ def branch_and_bound(startfield, bound):
     while len(stack) > 0:
         #solution_length += 1
         current_solution.append(field.convert_to_string())
-        print(bound)
-        print(len(stack))
+
         if len(current_solution) < bound:
         # if solution_length < bound:
             child_fields = field.make_childs()
@@ -33,7 +32,8 @@ def branch_and_bound(startfield, bound):
                 stack.remove(field)
                 best_solution = current_solution
                 bound = len(best_solution)
-                #bound = solution_length
+                print("BOUND:", bound)
+                print("STACK SIZE:", len(stack))
                 if len(stack) > 0:
                     field = stack[0]
                 current_solution = current_solution[:field.layer]
