@@ -44,7 +44,7 @@ class Rush_hour():
 
     def play(self, algorithm):
         if algorithm == "breadthfirst":
-            breadth_first(self.startfield, keep_track)
+            breadth_first(self.startfield, self.keep_track)
 
         elif algorithm == "random":
             random(self.startfield, self.iterations)

@@ -26,7 +26,7 @@ def main():
         keep_track = input("Would you like to keep track of the moves made by algoritmh?\n"
                             "Default is NO, Use Yes for keeping track.\n"
                             "WARNING: THIS MAKE THE PROGRAM MUCH SLOWER\n")
-        if keep_track.lowercase() in ["yes", "y"]:
+        if keep_track.lower() in ["yes", "y"]:
             keep_track = True
         else:
             keep_track = False
