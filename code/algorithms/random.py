@@ -2,14 +2,14 @@ from classes.field import Field
 from random import randint
 import copy
 
-def random(startfield):
+def random(startfield, iterations):
     """
     Random algorithm for solving a Rush Hour game.
     iterations: Number of iterations requested
     """
     solutions = {}
     nr_of_nodes = 0
-    for i in range(1000):
+    for i in range(iterations):
         print(i)
         solution_length = 0
         field = startfield

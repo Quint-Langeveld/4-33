@@ -7,9 +7,11 @@ from algorithms.branch_and_bound import branch_and_bound
 import sys
 
 class Rush_hour():
-    def __init__(self, startfield):
+    def __init__(self, startfield, iterations, bound):
         self.fields = self.load_startfield(startfield)
         self.startfield = self.load_startfield(startfield)[0]
+        self.iterations = iterations
+        self.bound = bound
 
     def load_startfield(self, filename):
         # open startfield file and put lines in list
@@ -42,22 +44,14 @@ class Rush_hour():
         if algorithm == "breadthfirst":
             breadth_first(self.startfield, False)
 
-        elif algorithm == "itterative_deepening_depth_first":
-            itterative_deepening_depth_first_generator(self.startfield)
-
         elif algorithm == "random":
-            random(self.startfield)
+            random(self.startfield, self.iterations)
 
         elif algorithm == "random_and_bound":
-            random_and_bound(self.startfield)
+            random_and_bound(self.startfield, self.iterations, self.bound)
 
-        elif algorithm == "branch_and_bound":
-            branch_and_bound(self.startfield)
-
-        else:
-            "to do"
-
-
+        else: # algorithm == "branch_and_bound":
+            branch_and_bound(self.startfield, self.bound)
 
 # start game
 if __name__ == "__main__":
