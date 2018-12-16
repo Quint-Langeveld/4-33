@@ -3,6 +3,11 @@ from random import randint
 import copy
 
 def random_and_bound(startfield):
+    """
+    Random and bound algorithm for solving a Rush Hour game.
+    iterations: Number of iterations requested
+    bound: initial bound requested
+    """
     best_solution = []
     bound = 1000
     nr_of_nodes = 0
@@ -12,7 +17,7 @@ def random_and_bound(startfield):
         current_solution = [startfield.convert_to_string()]
         solution_length = 0
         field = startfield
-        while not field.won() and (len(best_solution) == 0 or (len(current_solution) <= bound)):
+        while not field.won() and  len(current_solution) <= bound:
             child_fields = field.make_childs()
             nr_of_nodes += 1
             number = randint(0, (len(child_fields) - 1))

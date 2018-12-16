@@ -2,13 +2,24 @@ from classes.cell import Cell
 import copy
 
 class Field(object):
+    """Object that representa a field in Rush Hour"""
     def __init__(self, size, new_field):
+        """
+        Initializes new Field object.
+        size: Size of Field
+        new_field: [[Cell]]
+        return: string
+        """
         self.exit_row_index = (size - 1) // 2
         self.size = size
         self.field = new_field
         self.layer = 0
 
     def __str__(self):
+        """
+        Returns string with information about self.
+        return: string
+        """
         s = ""
         for row in self.field:
             for cell in row:
@@ -17,7 +28,10 @@ class Field(object):
         return s
 
     def make_childs(self):
-        """Create children fields from field"""
+        """
+        Returns all possible children fields of self.
+        Return: [Field]
+        """
         new_fields = []
         # iterate over rows in field and cells in row
         for i, row in enumerate(self.field):
@@ -36,6 +50,13 @@ class Field(object):
         return new_fields
 
     def make_horizontal_moves(self, cell, i, j):
+        """
+        Moves vehicle to all possible places in horizontal direction
+        cell:   Cell object in Field.field
+        i:      Index of row Cell in Field.field
+        j:      Index of column Cell in Field.field
+        return: [Field]
+        """
         new_fields = []
         for k in range(1, self.size):
             if j - k >= 0 and self.field[i][j - k].id == "E":
@@ -46,12 +67,17 @@ class Field(object):
                 if self.check_if_valid_move(cell, k, i, j):
                     new_field_object = self.create_new_field(cell, i, j, k)
                     new_fields.append(new_field_object)
-
-
         return new_fields
 
 
     def make_vertical_moves(self, cell, i, j):
+        """
+        Moves vehicle to all possible places in vertical direction
+        cell:   Cell object in Field.field
+        i:      Index of row Cell in Field.field
+        j:      Index of column Cell in Field.field
+        return: [Field]
+        """
         new_fields = []
         # for k in range(0, self.size - 1):
         for k in range(1, self.size):
@@ -72,6 +98,13 @@ class Field(object):
 
 
     def create_new_field(self, cell, i, j, k):
+        """
+        Creates field with vehicle on new position.
+        cell:   Cell object in Field.field
+        i:      Index of row Cell in Field.field
+        j:      Index of column Cell in Field.field
+        return: Field
+        """
         pos = 1
         if k > 0:
             pos = -1
@@ -99,6 +132,14 @@ class Field(object):
         return new_field_object
 
     def check_if_valid_move(self, cell, k, i, j):
+        """
+        Checks if move to new postition is valid Rush Hour move.
+        cell:   Cell object in Field.field
+        k:      Difference between old index and new index Cell in Field.field
+        i:      Index of row Cell in Field.field
+        j:      Index of column Cell in Field.field
+        return: bool
+        """
         pos = 1
         if k > 0:
             pos = -1
@@ -112,8 +153,11 @@ class Field(object):
                     move_possible = False
         return move_possible
 
-
     def won(self):
+        """
+        Checks if red car can move trough exit.
+        return: bool
+        """
         # find red car
         index_red_car = 0
         vehicle_blocking_exit = False
@@ -129,6 +173,10 @@ class Field(object):
             return True
 
     def convert_to_string(self):
+        """
+        Returns string with information about self.
+        Return: string
+        """
         s = ""
         for row in self.field:
             for cell in row:
@@ -137,6 +185,10 @@ class Field(object):
         return s
 
     def make_copy(self):
+        """
+        Returns copy of Field.field from self
+        Return: [[Cell]]
+        """
         copy = []
         for i in range(self.size):
             copy.append([])

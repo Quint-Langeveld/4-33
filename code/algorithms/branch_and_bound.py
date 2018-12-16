@@ -3,6 +3,10 @@ from random import randint
 import copy
 
 def branch_and_bound(startfield):
+    """
+    Branch and bound algorithm for solving a Rush Hour game.
+    bound: initial bound requested
+    """
     best_solution = []
     bound = 10000
     nr_of_nodes = 0

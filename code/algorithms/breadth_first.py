@@ -5,6 +5,10 @@ from classes.archive import Archive
 import copy
 
 def breadth_first(field, remember_path):
+    """
+    Breadth first algorithm for solving a Rush Hour game.
+    remember_path: bool that indicates wether moves should be saved in Archive
+    """
     nr_of_nodes = 0
 
     nr_of_nodes = 0
