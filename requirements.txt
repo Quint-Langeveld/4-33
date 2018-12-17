@@ -1,4 +1,7 @@
 numpy
 matplotlib
-random
+random (randint)
 copy
+os
+sys
+datetime
