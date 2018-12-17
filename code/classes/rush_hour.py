@@ -11,6 +11,14 @@ import datetime
 
 class Rush_hour():
     def __init__(self, startfield, iterations, bound, keep_track):
+        """
+        Initializes new Rush Hield gamse.
+        startfield: startfield as Field object
+        iterations: number of iterations requested by user
+        bound: initial bound requested by user
+        keep_track: bool representing wether the user wants to save moves in breadtfirst
+        return: Rush_hour
+        """
         self.fields = self.load_startfield(startfield)
         self.field_number = startfield[5]
         self.startfield = self.load_startfield(startfield)[0]
@@ -19,7 +27,11 @@ class Rush_hour():
         self.keep_track = keep_track
 
     def load_startfield(self, filename):
-        # open startfield file and put lines in list
+        """
+        Returns list with startfield as Field object.
+        filename: name of file startfield
+        return: [Field]
+        """
         filename = f"data/startfields/{filename}"
         with open(filename, "r") as f:
             field_data = f.readlines()
@@ -46,6 +58,12 @@ class Rush_hour():
         return [Field(field_size, new_field)]
 
     def play(self, algorithm, visualization_wanted):
+        """
+        Handles the game
+        algorithm: requested algorithm by user
+        visulization_wanted: bool represening wether the user want a visualization
+        no return
+        """
         if algorithm == "breadthfirst":
             results = breadth_first(self.startfield, self.keep_track)
             self.write_output(algorithm, results)
@@ -76,6 +94,12 @@ class Rush_hour():
                 visualization(results[2])
 
     def write_output(self, algorithm, results):
+        """
+        Writes results to output text file
+        algorithm: requested algorithm by user
+        results: result from algoritms
+        no return, produces textfile
+        """
         date_time = str(datetime.datetime.now())
         date_time = date_time[:19]
         filename = f"results/output/Output Field{self.field_number}, {algorithm}, {date_time}.txt"
