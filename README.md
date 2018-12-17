@@ -17,11 +17,18 @@ pip install -r requirements.txt
 ## Structure:
 All Python scripts are stored in the folder Code. All input values can be found in the map Data where the map Results hold the  obtained results from the code.
 
-## Testing:
+## Running:
 To run the code with a standardconfiguration use the instruction below, where one of the seven problems and the used algorithm should be defined: 
 ```
 python main.py <field>.txt <algorithm>
 ```
+
+There is a chance running with the above command wil result in an Error, in the case run with the following command:
+```
+pythonw main.py <field>.txt <algorithm>
+```
+
+After one of the above command is entered, the user will be prompted for their preferences regarding the results. The user can, depending on the selected algorithm, choose wether the rush hour moves made by the algorithm should be saved and wether these should be visualized in an animation.
 
 ## Authors:
 Melle Meewis, Quint Langeveld & Hugo Langeveld
@@ -43,11 +50,9 @@ Lower bound (minimal number of fields): 1
 ```
 
 ## Algorithms 
-We looked into a Breadth-first and a Random algorithm to find a solution for the Rush hour problem. See the algorithm directory for more information
+We looked into a Breadth-first, Branch-and-Bound, Random-and_bound and a Random algorithm to find a solution for the Rush hour problem. See the algorithm directory for more information.
 
-When trying to complete the field above with a random and a breadth-first approach, the difference in memmory use was notable. In theory, the upper bound of a random algorithm is infinite, but in practice the amount of fields in memmory was equivalent to the amount of fields past. On the other hand, the maximum amount of fields in memmory for a breadth-first approach was equivalent to the state space, which is significantly larger and will cause problems further on. 
 
-  
 ## Objective Function:
 The objective for Rush hour is met when the red car find it's way out of the bord. This can simply be summarized in one interger: the amount of moves done to reach the exit. The theoretical upper bound of the objective function thereby is the theoretical upperbound of the state space and the theoretical lower bound of the objective function can simply be set on 1, the lowest amount of moves necessary to reach the objective. 
 
