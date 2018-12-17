@@ -44,3 +44,4 @@ def branch_and_bound(startfield):
     print("steps to win: ", len(best_solution))
     for field in best_solution:
         print(field)
+        print("nr of nodes: ", nr_of_nodes)
