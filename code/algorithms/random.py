@@ -10,7 +10,6 @@ def random(startfield, iterations):
     solutions = {}
     nr_of_nodes = 0
     for i in range(iterations):
-        print(i)
         solution_length = 0
         field = startfield
         while not field.won():
@@ -23,6 +22,9 @@ def random(startfield, iterations):
             solutions[solution_length] =  int(solutions[solution_length] + 1)
         except:
             solutions[solution_length] = int(1)
-        print(solution_length)
-    print(solutions)
-    print(nr_of_nodes)
+        if i % 10 == 0:
+            print("Iteration:", i + 1)
+            print("Solution length:", solution_length)
+    return solutions
+    # print(solutions)
+    # print(nr_of_nodes)

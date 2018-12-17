@@ -4,6 +4,7 @@ from algorithms.breadth_first import breadth_first
 from algorithms.random_and_bound import random_and_bound
 from algorithms.random import random
 from algorithms.branch_and_bound import branch_and_bound
+from algorithms.helpers.read_distribution import read_distribution
 import sys
 import datetime
 
@@ -46,15 +47,22 @@ class Rush_hour():
     def play(self, algorithm):
         if algorithm == "breadthfirst":
             results = breadth_first(self.startfield, self.keep_track)
-            print(results[2])
             self.write_output(algorithm, results)
 
         elif algorithm == "random":
             results = random(self.startfield, self.iterations)
-            self.write_output()
+            date_time = str(datetime.datetime.now())
+            filename = f"results/raw_distribution_files/Raw Distribution Field{self.field_number}, {date_time}.txt"
+            with open(filename, "w") as f:
+                for key, value in results.items():
+                    f.write(f"{key}: {value}, ")
+            f.close()
+            results = [read_distribution(filename)]
+            self.write_output(algorithm, results)
 
         elif algorithm == "random_and_bound":
-            random_and_bound(self.startfield, self.iterations, self.bound)
+            results = random_and_bound(self.startfield, self.iterations, self.bound)
+            self.write_output(algorithm, results)
 
         else: # algorithm == "branch_and_bound":
             branch_and_bound(self.startfield, self.bound)
@@ -62,7 +70,7 @@ class Rush_hour():
 
     def write_output(self, algorithm, results):
         date_time = str(datetime.datetime.now())
-        filename = f"results/outputs/Output Field{self.field_number}, {algorithm}, {date_time}.txt"
+        filename = f"results/output/Output Field{self.field_number}, {algorithm}, {date_time}.txt"
         with open(filename, "w") as f:
             f.write(f"Date and time: {date_time}\n"
                     f"Field: field {self.field_number}\n"
@@ -74,14 +82,15 @@ class Rush_hour():
 
 
             else:
-                f.write(f"Solution distribution: {results[0]}\n")
+                f.write(f"Solution distribution: {results[0]}\n\n")
 
             f.write(f"Start position: \n{self.startfield.convert_to_string()}\n")
 
             if len(results) == 3:
-                f.write("Solution:")
+                f.write("Solution:\n")
                 for field in results[2]:
                     f.write(f"{field}\n")
+        f.close()
 
 
 

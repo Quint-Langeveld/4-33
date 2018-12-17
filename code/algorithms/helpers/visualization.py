@@ -65,15 +65,30 @@ def divide(field):
                     id = cell.id[:2]
                     out_field[i][j] = int(id)
     return out_field
-#
-#
-if __name__ == '__main__':
-    #field = [
-    #    ["1V3", "2H2", "2H2", "3H2", "3H2", "E"],
-    #    ["1V3", "4V2", "5H2", "5H2", "6H2", "6H2"],
-    #    ["1V3", "4V2", "7H2", "RH2", "RH2", "8V2"],
-    #    ["9V2", "10V2", "7H2", "11H2", "11H2", "8V2"],
-    #    ["9V2", "10V2", "12H2", "12H2", "13H2", "13H2"],
-    #    ["14V3", "14V3", "14V3", "15H3", "15H3", "15V3"],
-            ]
-    visualization(field)
+
+def read_distribution(filename):
+    distribution = {"0-50": 0, "51-100": 0, "101-200" : 0, "201-2000": 0, "2001-4000": 0, "4001-6000": 0, "6001-8000": 0, "8001 ->": 0}
+    categories = [51,101, 201, 2001, 4001, 6001, 8001]
+    keylist = list(distribution.keys())
+    print(keylist)
+    with open(filename, "r") as f:
+        data = f.readlines()
+        data[0] = data[0].strip(", \n")
+        data = data[0].split(",")
+        for i, data_item in enumerate(data):
+            data[i] = data[i].split(":")
+        for i, data_item in enumerate(data):
+            for j, item in enumerate(data_item):
+                data[i][j] = item.strip(" ")
+        for item in data:
+            print(item)
+            if int(item[0]) >= categories[-1]:
+                distribution[keylist[-1]] += int(item[1])
+            else:
+                item_placed = False
+                for i, categorie in enumerate(categories):
+                    if item_placed == False:
+                        if int(item[0]) < categorie:
+                            distribution[keylist[i]] += int(item[1])
+                            item_placed = True
+        return distribution
