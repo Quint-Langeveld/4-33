@@ -1,4 +1,9 @@
 def read_distribution(filename):
+    """
+    Function that processes a raw distribution file.
+    filename: name of raw file
+    return: distribution as dicitonary
+    """
     distribution = {"0-50": 0, "51-100": 0, "101-200" : 0, "201-2000": 0, "2001-4000": 0, "4001-6000": 0, "6001-8000": 0, "8001 ->": 0}
     categories = [51,101, 201, 2001, 4001, 6001, 8001]
     keylist = list(distribution.keys())

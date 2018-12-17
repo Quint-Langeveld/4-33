@@ -8,6 +8,7 @@ def breadth_first(field, remember_path):
 
     """
     Breadth first algorithm for solving a Rush Hour game.
+    field: startfield
     remember_path: bool that indicates wether moves should be saved in Archive
     """
     nr_of_nodes = 0
@@ -25,7 +26,6 @@ def breadth_first(field, remember_path):
                 path = len(archive.trace_path(child_fields[0]))
                 print(path)
             for new_field in new_fields:
-                #visualization(new_field.field)
                 if archive.add(child_fields[0], new_field):
                     child_fields.append(new_field)
                 if new_field.won():
@@ -55,11 +55,3 @@ def breadth_first(field, remember_path):
                     solution_length = new_field.layer + 1
             del child_fields[0]
         return [solution_length, nr_of_nodes]
-
-
-def game_won(archive, field, best_solutions):
-    path = archive.trace_path(field)
-    print(f"Solution {best_solutions}:")
-    print("steps to win: ", len(path))
-    for field in path:
-        print(field)

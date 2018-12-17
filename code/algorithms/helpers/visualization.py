@@ -7,7 +7,11 @@ import copy
 import sys
 
 def visualization(fields):
-
+    """
+    Function that visualizes a solution.
+    fields: [fiels_as_string]
+    return: plotted field
+    """
 
     # copying the startfield
     for field in fields:
@@ -47,7 +51,11 @@ def visualization(fields):
         plt.show()
 
 def divide(field):
-
+    """
+    Function that processes a field for visualizing.
+    field: field as string
+    return: outfield
+    """
     print_field = copy.deepcopy(field)
     print_field = print_field.split("\n")
     for i, line in enumerate(print_field):
@@ -57,7 +65,6 @@ def divide(field):
     print_field.pop()
     out_field = [[0 for i in range(len(print_field))] for n in range(len(print_field))]
     for i, row in enumerate(print_field):
-        # print_field[i] = [line.strip() for line in print_field.split(',')]
         for j, cell in enumerate(row):
             if not cell[0].isdigit():
                 if cell[0] == 'R':
