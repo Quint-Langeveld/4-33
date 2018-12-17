@@ -5,7 +5,7 @@ from classes.archive import Archive
 import copy
 
 def breadth_first(field, remember_path):
-    nr_of_nodes = 0
+
 
     nr_of_nodes = 0
     if remember_path == True:
@@ -31,12 +31,9 @@ def breadth_first(field, remember_path):
                     game_won(archive, new_field, best_solutions)
             del child_fields[0]
             print(nr_of_nodes)
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> e87d8dc3b3ec6925a4b964ef3fcf5fdfc91dffbe
 
     else:
         past_fields = []
@@ -58,11 +55,8 @@ def breadth_first(field, remember_path):
             del child_fields[0]
         print(solution_length)
         print(nr_of_nodes)
-<<<<<<< HEAD
-=======
 
 
->>>>>>> e87d8dc3b3ec6925a4b964ef3fcf5fdfc91dffbe
 
 def game_won(archive, field, best_solutions):
     path = archive.trace_path(field)
