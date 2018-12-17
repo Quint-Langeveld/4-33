@@ -8,7 +8,7 @@
 python main.py field#.txt <algorithm>
 ```
 
-### Or if the upper causes errors:
+### Or if the above causes errors:
 
 ```
 python main.py field#.txt <algorithm>
