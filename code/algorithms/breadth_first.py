@@ -5,7 +5,15 @@ from classes.archive import Archive
 import copy
 
 def breadth_first(field, remember_path):
+<<<<<<< HEAD
 
+=======
+    """
+    Breadth first algorithm for solving a Rush Hour game.
+    remember_path: bool that indicates wether moves should be saved in Archive
+    """
+    nr_of_nodes = 0
+>>>>>>> ae363251b5bf25c1e304826f434256d93e4ccf08
 
     nr_of_nodes = 0
     if remember_path == True:
@@ -28,12 +36,17 @@ def breadth_first(field, remember_path):
                 if new_field.won():
                     won = True
                     best_solutions += 1
-                    game_won(archive, new_field, best_solutions)
+                    solution = archive.trace_path(new_field)
+                    solution_length = len(solution)
+                    return[solution_length, nr_of_nodes, solution]
             del child_fields[0]
+<<<<<<< HEAD
             print(nr_of_nodes)
 
 
 
+=======
+>>>>>>> ae363251b5bf25c1e304826f434256d93e4ccf08
 
     else:
         past_fields = []
@@ -53,9 +66,15 @@ def breadth_first(field, remember_path):
                     won = True
                     solution_length = new_field.layer + 1
             del child_fields[0]
+<<<<<<< HEAD
         print(solution_length)
         print(nr_of_nodes)
 
+=======
+        return [solution_length, nr_of_nodes]
+        # print(solution_length)
+        # print(nr_of_nodes)
+>>>>>>> ae363251b5bf25c1e304826f434256d93e4ccf08
 
 
 def game_won(archive, field, best_solutions):
@@ -64,4 +83,4 @@ def game_won(archive, field, best_solutions):
     print("steps to win: ", len(path))
     for field in path:
         print(field)
-    print(len(archive.fields))
+    #print(len(archive.fields))
