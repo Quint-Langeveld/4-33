@@ -50,7 +50,8 @@ class Rush_hour():
             self.write_output(algorithm, results)
 
         elif algorithm == "random":
-            random(self.startfield, self.iterations)
+            results = random(self.startfield, self.iterations)
+            self.write_output()
 
         elif algorithm == "random_and_bound":
             random_and_bound(self.startfield, self.iterations, self.bound)
