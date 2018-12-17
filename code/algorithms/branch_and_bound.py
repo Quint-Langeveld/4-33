@@ -8,7 +8,11 @@ def branch_and_bound(startfield, bound):
     bound: initial bound requested
     """
     best_solution = []
+<<<<<<< HEAD
+    bound = 100
+=======
     bound = bound
+>>>>>>> ae363251b5bf25c1e304826f434256d93e4ccf08
     nr_of_nodes = 0
     field = startfield
     stack = [field]
