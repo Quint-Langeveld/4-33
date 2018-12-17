@@ -6,89 +6,69 @@ from matplotlib.colors import ListedColormap
 import copy
 import sys
 
-def visualization(field):
+def visualization(fields):
 
 
     # copying the startfield
-    print_field = divide(field)
+    for field in fields:
+        print_field = divide(field)
 
-    # Describing all possible colors for the cars
-    all_colors = ['w', 'k', 'r',
-                    'green', 'blue', 'magenta',
-                    'cyan', 'purple', 'orange',
-                    'yellow', 'lime', 'indigo',
-                    'violet', 'gray', 'pink',
-                    'brown'
-                    ]
+        # Describing all possible colors for the cars
+        all_colors = ['w', 'k', 'r',
+                        'green', 'blue', 'magenta',
+                        'cyan', 'purple', 'orange',
+                        'yellow', 'lime', 'indigo',
+                        'violet', 'gray', 'pink',
+                        'brown',
+                        ]
 
-    list_ids = []
-    for i, row in enumerate(print_field):
-        for j, cell in enumerate(row):
-            if isinstance(cell, int):
-                list_ids.append(cell)
-            elif cell == 'R':
-                print_field[i][j] = 10
+        list_ids = []
+        for i, row in enumerate(print_field):
+            for j, cell in enumerate(row):
+                if isinstance(cell, int):
+                    list_ids.append(cell)
+                elif cell == 'R':
+                    print_field[i][j] = 2
 
-    colors_needed = len(list_ids) + 3
+        colors_needed = len(list_ids) + 3
 
-    # padding around the field
-    field = np.pad(print_field, ((1,1), (1,1)), 'constant', constant_values = 1)
-    field[(len(field) - 1) // 2][len(field) - 1] = 0
+        # padding around the field
+        field = np.pad(print_field, ((1,1), (1,1)), 'constant', constant_values = 1)
+        field[(len(field) - 1) // 2][len(field) - 1] = 0
 
 
-    colors = all_colors[0: colors_needed]
-    cmp = ListedColormap(colors)
-    plt.matshow(field, cmap=cmp)
-    # close and show, thereby creating a movie
-    # plt.show(block=True)
-    plt.pause(0.000000001)
-    plt.close()
-    plt.show()
+        colors = all_colors[0: colors_needed]
+        cmp = ListedColormap(colors)
+        plt.matshow(field, cmap=cmp)
+        # close and show, thereby creating a movie
+        # plt.show(block=True)
+        plt.pause(0.25)
+        plt.close()
+        plt.show()
 
 def divide(field):
 
     print_field = copy.deepcopy(field)
+    print_field = print_field.split("\n")
+    for i, line in enumerate(print_field):
+        line = line.split(" ")
+        line.pop()
+        print_field[i] = line
+    print_field.pop()
     out_field = [[0 for i in range(len(print_field))] for n in range(len(print_field))]
     for i, row in enumerate(print_field):
         # print_field[i] = [line.strip() for line in print_field.split(',')]
         for j, cell in enumerate(row):
-            if not cell.id[0].isdigit():
-                if cell.id[0] == 'R':
+            if not cell[0].isdigit():
+                if cell[0] == 'R':
                     out_field[i][j] = 'R'
-                elif cell.id[0] == 'E':
+                elif cell[0] == 'E':
                     out_field[i][j] = 0
             else:
-                if len(cell.id) == 3:
-                    id = cell.id[0]
+                if len(cell) == 3:
+                    id = cell[0]
                     out_field[i][j] = int(id)
                 else:
-                    id = cell.id[:2]
+                    id = cell[:2]
                     out_field[i][j] = int(id)
     return out_field
-
-def read_distribution(filename):
-    distribution = {"0-50": 0, "51-100": 0, "101-200" : 0, "201-2000": 0, "2001-4000": 0, "4001-6000": 0, "6001-8000": 0, "8001 ->": 0}
-    categories = [51,101, 201, 2001, 4001, 6001, 8001]
-    keylist = list(distribution.keys())
-    print(keylist)
-    with open(filename, "r") as f:
-        data = f.readlines()
-        data[0] = data[0].strip(", \n")
-        data = data[0].split(",")
-        for i, data_item in enumerate(data):
-            data[i] = data[i].split(":")
-        for i, data_item in enumerate(data):
-            for j, item in enumerate(data_item):
-                data[i][j] = item.strip(" ")
-        for item in data:
-            print(item)
-            if int(item[0]) >= categories[-1]:
-                distribution[keylist[-1]] += int(item[1])
-            else:
-                item_placed = False
-                for i, categorie in enumerate(categories):
-                    if item_placed == False:
-                        if int(item[0]) < categorie:
-                            distribution[keylist[i]] += int(item[1])
-                            item_placed = True
-        return distribution

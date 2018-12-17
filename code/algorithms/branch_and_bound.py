@@ -7,6 +7,7 @@ def branch_and_bound(startfield, bound):
     Branch and bound algorithm for solving a Rush Hour game.
     bound: initial bound requested
     """
+    print("Run started")
     best_solution = []
     bound = bound
     nr_of_nodes = 0

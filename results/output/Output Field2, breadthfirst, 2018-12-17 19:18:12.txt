@@ -1,0 +1,15 @@
+Date and time: 2018-12-17 19:18:12
+Field: field 2
+Algorithm: breadthfirst
+
+Shortest solution: 15
+Number of nodes searched: 1476
+
+Start position: 
+E0 E0 1H2 1H2 2H2 2H2 
+E0 3H2 3H2 4H2 4H2 5V3 
+E0 E0 RH2 RH2 6V2 5V3 
+7H2 7H2 8H2 8H2 6V2 5V3 
+9V2 E0 E0 10V2 11H2 11H2 
+9V2 E0 E0 10V2 12H2 12H2 
+

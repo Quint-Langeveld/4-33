@@ -5,6 +5,7 @@ from algorithms.random_and_bound import random_and_bound
 from algorithms.random import random
 from algorithms.branch_and_bound import branch_and_bound
 from algorithms.helpers.read_distribution import read_distribution
+from algorithms.helpers.visualization import visualization
 import sys
 import datetime
 
@@ -44,10 +45,12 @@ class Rush_hour():
                 new_field.append(new_field_row)
         return [Field(field_size, new_field)]
 
-    def play(self, algorithm):
+    def play(self, algorithm, visualization_wanted):
         if algorithm == "breadthfirst":
             results = breadth_first(self.startfield, self.keep_track)
             self.write_output(algorithm, results)
+            if len(results) > 2 and visualization_wanted == True:
+                visualization(results[2])
 
         elif algorithm == "random":
             results = random(self.startfield, self.iterations)
@@ -62,13 +65,15 @@ class Rush_hour():
 
         elif algorithm == "random_and_bound":
             results = random_and_bound(self.startfield, self.iterations, self.bound)
-            print(results)
             self.write_output(algorithm, results)
+            if visualization_wanted == True:
+                visualization(results[2])
 
         else: # algorithm == "branch_and_bound":
             results = branch_and_bound(self.startfield, self.bound)
             self.write_output(algorithm, results)
-
+            if visualization_wanted == True:
+                visualization(results[2])
 
     def write_output(self, algorithm, results):
         date_time = str(datetime.datetime.now())
@@ -95,4 +100,5 @@ class Rush_hour():
                 f.write("Solution:\n")
                 for field in results[2]:
                     f.write(f"{field}\n")
+        print(f"Open {filename} to see results.")
         f.close()
