@@ -62,6 +62,7 @@ class Rush_hour():
 
         elif algorithm == "random_and_bound":
             results = random_and_bound(self.startfield, self.iterations, self.bound)
+            print(results)
             self.write_output(algorithm, results)
 
         else: # algorithm == "branch_and_bound":
@@ -82,7 +83,11 @@ class Rush_hour():
                 f.write(f"Shortest solution: {results[0]}\n"
                         f"Number of nodes searched: {results[1]}\n\n")
             else:
-                f.write(f"Solution distribution: {results[0]}\n\n")
+                f.write(f"Solution distribution:\n")
+                result_dict = results[0]
+                for key, value in results[0].items():
+                    f.write(f"{key}: {value}\n")
+                f.write("\n")
 
             f.write(f"Start position: \n{self.startfield.convert_to_string()}\n")
 

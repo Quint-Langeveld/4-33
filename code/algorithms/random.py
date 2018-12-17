@@ -24,7 +24,4 @@ def random(startfield, iterations):
             solutions[solution_length] = int(1)
         if i % 10 == 0:
             print("Iteration:", i + 1)
-            print("Solution length:", solution_length)
     return solutions
-    # print(solutions)
-    # print(nr_of_nodes)

@@ -11,8 +11,6 @@ def breadth_first(field, remember_path):
     remember_path: bool that indicates wether moves should be saved in Archive
     """
     nr_of_nodes = 0
-
-    nr_of_nodes = 0
     if remember_path == True:
         archive = Archive()
         archive.add_start_field(field)
@@ -28,25 +26,22 @@ def breadth_first(field, remember_path):
                 print(path)
             for new_field in new_fields:
                 #visualization(new_field.field)
-                archive.add(child_fields[0], new_field)
-                child_fields.append(new_field)
+                if archive.add(child_fields[0], new_field):
+                    child_fields.append(new_field)
                 if new_field.won():
                     won = True
                     best_solutions += 1
                     solution = archive.trace_path(new_field)
                     solution_length = len(solution)
+                    nr_of_nodes += 1
                     return[solution_length, nr_of_nodes, solution]
             del child_fields[0]
-            print(nr_of_nodes)
-
-
 
     else:
         past_fields = []
         child_fields = [field]
         won = False
         while won == False:
-            #print(solution_length)
             new_fields = child_fields[0].make_childs()
             nr_of_nodes += 1
             for new_field in new_fields:
