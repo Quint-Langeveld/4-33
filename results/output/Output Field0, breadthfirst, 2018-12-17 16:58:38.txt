@@ -1,0 +1,15 @@
+Date and time: 2018-12-17 16:58:38
+Field: field 0
+Algorithm: breadthfirst
+
+Shortest solution: 6
+Number of nodes searched: 117
+
+Start position: 
+8V3 7H3 7H3 7H3 6H2 6H2 
+8V3 1H3 1H3 1H3 E0 2V2 
+8V3 3V3 E0 RH2 RH2 2V2 
+9V2 3V3 E0 E0 E0 E0 
+9V2 3V3 9H2 9H2 5H2 5H2 
+E0 E0 4H3 4H3 4H3 E0 
+

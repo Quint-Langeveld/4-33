@@ -65,11 +65,13 @@ class Rush_hour():
             self.write_output(algorithm, results)
 
         else: # algorithm == "branch_and_bound":
-            branch_and_bound(self.startfield, self.bound)
+            results = branch_and_bound(self.startfield, self.bound)
+            self.write_output(algorithm, results)
 
 
     def write_output(self, algorithm, results):
         date_time = str(datetime.datetime.now())
+        date_time = date_time[:19]
         filename = f"results/output/Output Field{self.field_number}, {algorithm}, {date_time}.txt"
         with open(filename, "w") as f:
             f.write(f"Date and time: {date_time}\n"
@@ -79,8 +81,6 @@ class Rush_hour():
             if len(results) >= 2:
                 f.write(f"Shortest solution: {results[0]}\n"
                         f"Number of nodes searched: {results[1]}\n\n")
-
-
             else:
                 f.write(f"Solution distribution: {results[0]}\n\n")
 
@@ -91,22 +91,3 @@ class Rush_hour():
                 for field in results[2]:
                     f.write(f"{field}\n")
         f.close()
-
-
-
-# start game
-if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python rush_hour.py startfield algorithm")
-        sys.exit(1)
-    startfield = sys.argv[1]
-    algorithm = sys.argv[2]
-    algorithms = ["breadthfirst", "random", "random_and_bound", "branch_and_bound"]
-    if algorithm not in algorithms:
-        print("Algorithm not supported, please try again")
-        print("You can choose between the following:")
-        for algorithm in algorithms:
-            print(algorithm)
-        sys.exit(1)
-    rush_hour = Rush_hour(startfield)
-    rush_hour.play(algorithm)

@@ -8,7 +8,6 @@ def branch_and_bound(startfield, bound):
     bound: initial bound requested
     """
     best_solution = []
-    bound = 100
     bound = bound
     nr_of_nodes = 0
     field = startfield
@@ -42,11 +41,8 @@ def branch_and_bound(startfield, bound):
             stack.remove(field)
             if len(stack) > 0:
                 field = stack[0]
-            #solution_length = field.layer
             current_solution = current_solution[:field.layer]
 
     #print("  ", solution_length)
-    print("steps to win: ", len(best_solution))
-    for field in best_solution:
-        print(field)
-        print("nr of nodes: ", nr_of_nodes)
+    solution_length = len(best_solution)
+    return [solution_length, nr_of_nodes, best_solution]
