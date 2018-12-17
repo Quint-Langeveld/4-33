@@ -63,4 +63,3 @@ def game_won(archive, field, best_solutions):
     print("steps to win: ", len(path))
     for field in path:
         print(field)
-    #print(len(archive.fields))
