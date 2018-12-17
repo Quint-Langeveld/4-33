@@ -54,12 +54,7 @@ def breadth_first(field, remember_path):
                     won = True
                     solution_length = new_field.layer + 1
             del child_fields[0]
-        print(solution_length)
-        print(nr_of_nodes)
-
         return [solution_length, nr_of_nodes]
-        # print(solution_length)
-        # print(nr_of_nodes)
 
 
 def game_won(archive, field, best_solutions):
