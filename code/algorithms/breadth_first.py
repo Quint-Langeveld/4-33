@@ -32,9 +32,11 @@ def breadth_first(field, remember_path):
                 if new_field.won():
                     won = True
                     best_solutions += 1
-                    game_won(archive, new_field, best_solutions)
+                    solution = archive.trace_path(new_field)
+                    solution_length = len(solution)
+                    return[solution_length, nr_of_nodes, solution]
             del child_fields[0]
-        print(nr_of_nodes)
+
     else:
         past_fields = []
         child_fields = [field]
@@ -53,8 +55,9 @@ def breadth_first(field, remember_path):
                     won = True
                     solution_length = new_field.layer + 1
             del child_fields[0]
-        print(solution_length)
-        print(nr_of_nodes)
+        return [solution_length, nr_of_nodes]
+        # print(solution_length)
+        # print(nr_of_nodes)
 
 
 def game_won(archive, field, best_solutions):

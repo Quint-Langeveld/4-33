@@ -5,10 +5,12 @@ from algorithms.random_and_bound import random_and_bound
 from algorithms.random import random
 from algorithms.branch_and_bound import branch_and_bound
 import sys
+import datetime
 
 class Rush_hour():
     def __init__(self, startfield, iterations, bound, keep_track):
         self.fields = self.load_startfield(startfield)
+        self.field_number = startfield[5]
         self.startfield = self.load_startfield(startfield)[0]
         self.iterations = iterations
         self.bound = bound
@@ -17,7 +19,6 @@ class Rush_hour():
     def load_startfield(self, filename):
         # open startfield file and put lines in list
         filename = f"data/startfields/{filename}"
-        print(filename)
         with open(filename, "r") as f:
             field_data = f.readlines()
             field_size = len(field_data)
@@ -44,7 +45,9 @@ class Rush_hour():
 
     def play(self, algorithm):
         if algorithm == "breadthfirst":
-            breadth_first(self.startfield, self.keep_track)
+            results = breadth_first(self.startfield, self.keep_track)
+            print(results[2])
+            self.write_output(algorithm, results)
 
         elif algorithm == "random":
             random(self.startfield, self.iterations)
@@ -54,6 +57,32 @@ class Rush_hour():
 
         else: # algorithm == "branch_and_bound":
             branch_and_bound(self.startfield, self.bound)
+
+
+    def write_output(self, algorithm, results):
+        date_time = str(datetime.datetime.now())
+        filename = f"results/outputs/Output Field{self.field_number}, {algorithm}, {date_time}.txt"
+        with open(filename, "w") as f:
+            f.write(f"Date and time: {date_time}\n"
+                    f"Field: field {self.field_number}\n"
+                    f"Algorithm: {algorithm}\n\n")
+
+            if len(results) >= 2:
+                f.write(f"Shortest solution: {results[0]}\n"
+                        f"Number of nodes searched: {results[1]}\n\n")
+
+
+            else:
+                f.write(f"Solution distribution: {results[0]}\n")
+
+            f.write(f"Start position: \n{self.startfield.convert_to_string()}\n")
+
+            if len(results) == 3:
+                f.write("Solution:")
+                for field in results[2]:
+                    f.write(f"{field}\n")
+
+
 
 # start game
 if __name__ == "__main__":
