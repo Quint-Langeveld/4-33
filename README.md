@@ -20,7 +20,7 @@ All Python scripts are stored in the folder Code. All input values can be found 
 ## Testing:
 To run the code with a standardconfiguration use the instruction below, where one of the seven problems and the used algorithm should be defined: 
 ```
-python rush_hour.py <field>.txt <algorithm>
+python main.py <field>.txt <algorithm>
 ```
 
 ## Authors:
