@@ -18,6 +18,7 @@ def main():
             print(algorithm)
         sys.exit(1)
     iterations, bound = None, None
+    keep_track = None
     if algorithm in ["random", "random_and_bound"]:
         iterations = int(input("How many iterations would you like to do?\n"))
     if algorithm in ["random_and_bound", "branch_and_bound"]:
