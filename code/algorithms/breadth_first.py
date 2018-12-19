@@ -28,6 +28,7 @@ def breadth_first(field, remember_path):
             for new_field in new_fields:
                 if archive.add(child_fields[0], new_field):
                     child_fields.append(new_field)
+                    print(nr_of_nodes)
                 if new_field.won():
                     won = True
                     best_solutions += 1
@@ -47,6 +48,7 @@ def breadth_first(field, remember_path):
             for new_field in new_fields:
                 hashed_field = hash(new_field.convert_to_string())
                 new_field.layer = child_fields[0].layer + 1
+                print(nr_of_nodes)
                 if hashed_field not in past_fields:
                     past_fields.append(hashed_field)
                     child_fields.append(new_field)
