@@ -79,13 +79,7 @@ class Field(object):
         return: [Field]
         """
         new_fields = []
-        # for k in range(0, self.size - 1):
         for k in range(1, self.size):
-            # if self.field[k][j].id == "E":
-            #     if self.check_if_valid_move(cell, k, i, j):
-            #         new_field_object = self.create_new_field(cell, i, j, i-k)
-            #         new_fields.append(new_field_object)
-            #
             if i - k >= 0 and self.field[i - k][j].id == "E":
                 if self.check_if_valid_move(cell, -k, i, j):
                     new_field_object = self.create_new_field(cell, i, j, -k)

@@ -1,5 +1,5 @@
 class Archive_field(object):
-    """Objects that helps saves field in an efficient way"""
+    """Objects that helps save fields in an efficient way"""
     def __init__(self, field, parent_field):
         """
         Initializes new archive Field.

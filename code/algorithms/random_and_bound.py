@@ -12,8 +12,9 @@ def random_and_bound(startfield, iterations, bound):
     bound = bound
     nr_of_nodes = 0
     for i in range(iterations):
-        print(i)
-        print(bound)
+        if i % 30 == 0:
+            print("Iteration: ", i + 1)
+            print("Current bound:", bound)
         current_solution = [startfield.convert_to_string()]
         solution_length = 0
         field = startfield
@@ -26,8 +27,5 @@ def random_and_bound(startfield, iterations, bound):
         if field.won():
             best_solution = copy.deepcopy(current_solution)
             bound = len(best_solution)
-
-    print("steps to win: ", len(best_solution))
-    for field in best_solution:
-        print(field)
-    print(nr_of_nodes)
+    solution_legnth = len(best_solution)
+    return [solution_legnth, nr_of_nodes, best_solution]

@@ -8,10 +8,9 @@ def breadth_first(field, remember_path):
 
     """
     Breadth first algorithm for solving a Rush Hour game.
+    field: startfield
     remember_path: bool that indicates wether moves should be saved in Archive
     """
-    nr_of_nodes = 0
-
     nr_of_nodes = 0
     if remember_path == True:
         archive = Archive()
@@ -27,26 +26,22 @@ def breadth_first(field, remember_path):
                 path = len(archive.trace_path(child_fields[0]))
                 print(path)
             for new_field in new_fields:
-                #visualization(new_field.field)
-                archive.add(child_fields[0], new_field)
-                child_fields.append(new_field)
+                if archive.add(child_fields[0], new_field):
+                    child_fields.append(new_field)
                 if new_field.won():
                     won = True
                     best_solutions += 1
                     solution = archive.trace_path(new_field)
                     solution_length = len(solution)
+                    nr_of_nodes += 1
                     return[solution_length, nr_of_nodes, solution]
             del child_fields[0]
-            print(nr_of_nodes)
-
-
 
     else:
         past_fields = []
         child_fields = [field]
         won = False
         while won == False:
-            #print(solution_length)
             new_fields = child_fields[0].make_childs()
             nr_of_nodes += 1
             for new_field in new_fields:
@@ -59,18 +54,4 @@ def breadth_first(field, remember_path):
                     won = True
                     solution_length = new_field.layer + 1
             del child_fields[0]
-        print(solution_length)
-        print(nr_of_nodes)
-
         return [solution_length, nr_of_nodes]
-        # print(solution_length)
-        # print(nr_of_nodes)
-
-
-def game_won(archive, field, best_solutions):
-    path = archive.trace_path(field)
-    print(f"Solution {best_solutions}:")
-    print("steps to win: ", len(path))
-    for field in path:
-        print(field)
-    #print(len(archive.fields))

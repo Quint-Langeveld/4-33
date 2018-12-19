@@ -14,17 +14,19 @@ class Archive(object):
         Adds new field converted to Archive_field to archive.
         parent_field: Field from which new field is made
         new_field: Field that is being added to Archive
+        return: True if added, False if not added because field already in archive
         """
         new_field_as_string = new_field.convert_to_string()
         parent_field_as_string = parent_field.convert_to_string()
         parent_index = None
         for i, archive_field in enumerate(self.fields):
             if archive_field.field == new_field_as_string:
-                return
+                return False
             if archive_field.field == parent_field_as_string:
                 parent_index = i
         archive_field = Archive_field(new_field_as_string, parent_index)
         self.fields.append(archive_field)
+        return True
 
     def add_start_field(self, startfield):
         """
